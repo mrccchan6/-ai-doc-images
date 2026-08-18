@@ -1,0 +1,1428 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>📘 AI文書處理與商務溝通</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3b69fbe8-f70c-80b6-abea-de6e730942f5" class="page sans"><header><img class="page-cover-image" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2050.png" style="object-position:center 37.32%"/><h1 class="page-title" dir="auto">📘 AI文書處理與商務溝通</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><p id="3b99fbe8-f70c-804b-8b31-dda660120c96" class="" dir="auto">作者：詹健中｜年份：2026</p><blockquote id="3b69fbe8-f70c-8055-ab04-efc9e1c9b805" class="" dir="auto"><mark class="highlight-gray" data-notion-highlight="gray">本講義為獨立閱讀版本，不需搭配簡報即可自學或作為課後複習資料。所有提示詞皆可直接複製使用；。</mark></blockquote><aside class="block-color-yellow_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="yellow_background" style="white-space:pre-wrap;display:flex" id="3b69fbe8-f70c-80b6-826f-c20b2f18faa2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b69fbe8-f70c-80a8-ba86-ee021ea95755" class="" dir="auto">今天不是教 AI。</p><p id="3b69fbe8-f70c-80d3-ae8d-fa1b8178f35f" class="" dir="auto">今天教的是：</p><p id="3b69fbe8-f70c-8063-bba9-deb26f98716c" class="" dir="auto"><strong>如何每天少花一小時做文書。</strong></p></div></aside><hr id="3b69fbe8-f70c-80b7-acc3-e6d7973c1527" dir="auto"/><h2 id="3b69fbe8-f70c-8043-8d89-c0ed3a7c51f5" class="" dir="auto">🗺️ 課程學習地圖</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><figure id="3b69fbe8-f70c-803e-807f-fdf30ca6acc3" data-notion-code-syntax="mermaid"><pre class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph TD
+    A(開場：AI 工具盤點) --&gt; B(單元一：提示詞入門)
+    B --&gt; C(單元二：會議紀錄自動化)
+    C --&gt; D([專有名詞資料庫])
+    B --&gt; E(單元三：寫作風格與技能)
+    E --&gt; F([寫作風格設定檔])
+    D --&gt; G(單元四：Email與書信)
+    F --&gt; G
+    G --&gt; H(單元五：報告與提案)
+    H --&gt; I(單元六：多語翻譯)
+    I --&gt; J(單元七：整合實作)
+    style D color:#ff0000
+    style F color:#ff0000
+</code></pre><figcaption><mark class="highlight-gray" data-notion-highlight="gray">圖解以 Mermaid 語法呈現，貼入 Notion 即可自動渲染成圖</mark></figcaption></figure><p id="3b69fbe8-f70c-80b3-ab96-e6cb401ebe5e" class="" dir="auto"><strong>課程目標</strong></p><ul id="3b69fbe8-f70c-8073-8e4f-ca6617086343" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">能將會議錄音／逐字稿整理成結構化<strong>會議紀錄</strong>，並依會議類型選用對應格式</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80b0-91b1-cec7116731f4" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">能運用 GAP、PSB 框架與「<strong>語氣與決策情境</strong>」矩陣，快速產出符合需求的商務 Email</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80a0-8aa0-e715e78b315d" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">能將雜亂資料轉換為具邏輯結構的<strong>報告或提案大綱</strong></span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80cf-9ffc-ceb31f20dd71" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">能為跨國客戶溝通選用合適的<strong>翻譯工具</strong>組合</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8035-b153-e6303ea096a8" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">能建立個人專屬的 AI 文書<strong>工作流程</strong>（提示詞範本庫、專有名詞資料庫、寫作風格設定檔）</span><div class="indented"></div></li></ul><hr id="3b69fbe8-f70c-80bc-bc4a-c8c014c08314" dir="auto"/><h2 id="3b69fbe8-f70c-804f-875e-d76a0a0c8ea8" class="" dir="auto">🎬 開場：AI 工具盤點</h2><div id="3b69fbe8-f70c-8066-9921-ff2373de8010" class="column-list" data-notion-column-list="" dir="auto"><div id="3b69fbe8-f70c-80ef-82c9-d3ef48512f09" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ul id="3b69fbe8-f70c-80e6-891b-ed20c8b4d024" class="bulleted-list" dir="auto"><li style="list-style-type:disc">⏰您目前工作中最常花時間處理的「文書任務」是什麼？每次大約要花多少時間？<ul id="3b69fbe8-f70c-80a7-9e15-ce99a1b1ee56" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">30 分鐘以內</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8024-9f08-dc71bda1d395" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">30 分鐘 ~ 60分鐘</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80e3-80b2-f8daa8c96f94" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">1 ~ 2 小時</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8036-83c9-cade0e4a1b86" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">2 ~ 4 小時</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80df-ad2f-c84802f55521" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">4 小時以上</span><div class="indented"></div></li></ul></li></ul></div><div id="3b69fbe8-f70c-8021-8f2c-cf1cf07121bd" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ul id="3b69fbe8-f70c-80f8-93ed-fcffe415e666" class="bulleted-list" dir="auto"><li style="list-style-type:disc">您目前使用過哪些 AI 工具？<ul id="3b69fbe8-f70c-808b-b2f4-e307bbafeb4e" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">ChatGPT</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8097-bff8-e171e6a0e8c8" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Claude</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8044-b0da-cfe961ce8c08" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Gemini</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80c7-a789-ea8f82f15ff0" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><mark class="highlight-red" data-notion-highlight="red"><strong>Gemini Notebook</strong></mark></span><div class="indented"></div></li></ul><ul id="3b99fbe8-f70c-8007-9641-f6d1c6f50fb0" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Google AI Studio</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8045-963f-f9161db717c9" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><a href="https://manus.im/invitation/7BVHSF09WWAHLYF?utm_source=invitation&amp;utm_medium=social&amp;utm_campaign=system_share">Manus</a></span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80e8-96fb-edd9085ad411" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Napkin</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8065-bc6c-eaaf92fedee4" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Copilot</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80ad-80c2-fc4d229fc95b" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Felo</span><div class="indented"></div></li></ul><ul id="3b99fbe8-f70c-8082-a7e0-e752e118a7d4" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><a href="https://grok.com/">Grok</a></span><div class="indented"></div></li></ul><ul id="3b99fbe8-f70c-8060-b5ae-cb778a98d836" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Chronicle</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-808b-8153-fa2a2560237d" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">DeepL</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80db-bdcc-ca3a47a5ea3e" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">Others：</span><div class="indented"></div></li></ul></li></ul></div></div><p id="3b69fbe8-f70c-807a-a3e5-e4c9ea35a844" class="" dir="auto">把答案寫下來，這將是您今天最重要的「前後對比」起點——課程結束前，我們會回頭看這份紀錄，量化今天到底幫您省下多少時間。</p><hr id="3b69fbe8-f70c-8008-afbe-db90004a941b" dir="auto"/><h2 id="3b69fbe8-f70c-809d-84c6-cedcf40f26e9" class="" dir="auto">📝 單元一：AI 文書處理基礎與提示詞入門</h2><div id="3b79fbe8-f70c-80eb-8119-f89890ec9459" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8077-834c-d57523ed6ecc" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-809d-bb69-f531096fc45f" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit1.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit1.png"><img style="width:623.99853515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit1.png"/></a></figure></div><div id="3b79fbe8-f70c-80f3-9b91-db4dc9c86fd4" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b69fbe8-f70c-8026-8021-f74425c1079d" class="" dir="auto">情境故事：大壯的煩惱</h3><p id="3b69fbe8-f70c-80d0-bd03-ff90c72ce3a9" class="" dir="auto">大壯是一位業務工程師，每次寫信給客戶前都要花 20 分鐘構思，常常寫到一半卡住。小壯提醒他：「你有沒有想過先跟 AI 說清楚『<strong><span style="border-bottom:0.05em solid">角色、任務、情境、格式</span></strong>』？」</p><blockquote id="3b69fbe8-f70c-80a0-a981-da5aee622604" class="" dir="auto">✏️ <strong>現況回饋</strong>：寫下你目前最常處理的文書任務與所需時間，作為今天的對比基準。</blockquote><hr id="3b79fbe8-f70c-80fd-9272-d74720e80d3b" dir="auto"/></div></div><h3 id="3b69fbe8-f70c-8047-b369-c76805b2608a" class="" dir="auto">為什麼「會用 AI」不等於「用得好」</h3><p id="3b69fbe8-f70c-80b5-88a6-daeddedb7aaf" class="" dir="auto">同一個需求，模糊提示詞與結構化提示詞的產出品質差異極大：</p><ul id="3b69fbe8-f70c-8089-bc63-eca4142da18a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">❌ 模糊提示詞：「<strong><span style="border-bottom:0.05em solid">幫我寫一封信給客戶</span></strong>」→ AI 只能亂猜情境，產出通用、沒有重點的草稿</li></ul><ul id="3b69fbe8-f70c-8051-a733-d64f3f701331" class="bulleted-list" dir="auto"><li style="list-style-type:disc">✅ <strong><span style="border-bottom:0.05em solid">結構化指令</span></strong>：明確告訴 AI「你是誰、<strong><span style="border-bottom:0.05em solid">要做什麼</span></strong>、<strong><span style="border-bottom:0.05em solid">情境</span></strong>是什麼、<strong><span style="border-bottom:0.05em solid">格式</span></strong>要求是什麼」→ AI 才能產出貼近你需求的內容</li></ul><h3 id="3b69fbe8-f70c-8045-a998-e83462eb84d9" class="" dir="auto">四段式提示詞框架</h3><pre id="3b69fbe8-f70c-8088-92d1-ff1f1d6fb057" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph TD
+    A[角色 Role] --&gt; E[完整提示詞]
+    B[任務 Task] --&gt; E
+    C[情境 Context] --&gt; E
+    D[格式與限制 Format] --&gt; E</code></pre><ul id="3b69fbe8-f70c-8085-ad9d-f32daf66de2c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>角色</strong>：告訴 AI 它現在扮演什麼身份</li></ul><ul id="3b69fbe8-f70c-8061-ae8e-d1356062657b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><mark class="highlight-red" data-notion-highlight="red"><strong>任務：明確說出要完成什麼（目標或目的）</strong></mark></li></ul><ul id="3b69fbe8-f70c-8016-9eef-ed7571b5904c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>情境</strong>：提供背景資訊，情境越具體，產出越精準（單元二：會議紀錄自動化 ＋ 單元三：寫作風格與技能）</li></ul><ul id="3b69fbe8-f70c-80da-b4cd-fea684b542f0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>格式與限制</strong>：字數、語氣、結構、結尾要求</li></ul><p id="3b69fbe8-f70c-8070-8481-c87752d4ab25" class="" dir="auto"><strong>完整提示詞範例（請將下列「情境」改為實際情形，如ＯＯ設備改為客戶端現有設備）｜</strong><strong><a href="https://chatgpt.com/g/g-p-6a76f7bdf1ec81918c306db09ca9e56b-2026-speech/c/6a792bde-e09c-83ee-8360-30026bd7d76a">ChatGPT</a></strong></p><div id="3b89fbe8-f70c-8069-8e05-fa66cc6fa663" class="column-list" data-notion-column-list="" dir="auto"><div id="3b89fbe8-f70c-8035-b102-e21cfa078d49" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><pre id="3b69fbe8-f70c-80f6-b6c1-e9c528928103" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">角色：你是一位資深技術業務，擅長撰寫客戶溝通信件。
+任務：請撰寫一封「設備保養排程異動通知」。
+情境：客戶原訂於下週三的ＯＯ設備例行保養，因備料延遲需改期，原定時間需往後順延一週，且需說明不影響稼動率。
+格式與限制：字數150字以內，語氣正式、不失溫度，結尾附上明確的下一步時間選項。</code></pre></div><div id="3b89fbe8-f70c-8090-8b4b-cdd6c394ba55" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><pre id="3b89fbe8-f70c-8017-a35e-cece84172ee7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all"># 角色
+你是一位資深技術業務，具備 B2B 客戶溝通、設備維護、售後服務與客戶關係管理經驗，擅長撰寫正式、婉轉且具客戶導向的商務信件。
+
+# 任務
+請撰寫一封「設備保養排程異動通知」給客戶。
+
+# 情境
+客戶原訂於下週三進行「ＯＯ設備」例行保養。
+
+因相關備料作業時程調整，原訂保養時間需順延一週。
+
+請將此次排程異動描述為「為確保保養作業順利進行及維護品質，因此調整保養時程」，避免讓客戶感受到單純因供應商作業延誤而造成困擾。
+
+# 核心溝通目的
+本次信件最重要的溝通重點不是「延期」，而是：
+
+1. 降低客戶對排程異動的疑慮。
+2. 明確讓客戶知道此次調整不會影響目前設備正常運轉。
+3. 強調「維持客戶生產不中斷」是排程安排的重要考量。
+4. 讓客戶感受到供應商主動替其生產安排及稼動率考量。
+5. 清楚提出新的保養時段，促使客戶可以直接確認。
+
+# 必須包含的資訊
+請完整包含以下內容：
+
+- 原訂時間：下週三
+- 設備名稱：ＯＯ設備
+- 作業內容：例行保養
+- 異動原因：相關備料作業時程調整
+- 異動方式：原訂時間順延一週
+- 客戶利益：排程調整期間設備仍可維持正常運轉
+- 生產影響：不影響客戶整體稼動率，並以維持生產不中斷為優先
+- 禮貌表達：對排程調整造成的不便表示理解與歉意，但避免過度道歉
+- 下一步：提供明確的保養時間選項，請客戶確認
+
+# 時間選項
+請提供以下兩個選項：
+
+1. 09:00–12:00
+2. 13:00–16:00
+
+並請客戶確認適合的時段。
+
+# 文案策略
+請採用「客戶導向」而非「供應商解釋導向」的寫法。
+
+優先順序：
+
+「維持客戶生產不中斷」
+→「確保設備正常運轉」
+→「確保保養作業品質」
+→「說明排程調整原因」
+→「提出新的時間選項」
+
+不要讓「備料延遲」成為信件的主要焦點。
+
+# 語氣
+請使用：
+
+- 正式
+- 婉轉
+- 專業
+- 客戶導向
+- 有溫度但不過度客套
+- 穩定、讓客戶安心
+- 符合 B2B 技術業務溝通習慣
+
+避免：
+
+- 過度道歉
+- 推卸責任
+- 強調內部作業困難
+- 使用過於生硬的通知口吻
+- 使用亞洲式冗長客套話
+- 使用「造成非常大的不便」等過度負面的措辭
+- 讓客戶感覺設備即將停機或影響生產
+
+# 關鍵訊息
+請自然融入以下概念，但不要機械式逐字照抄：
+
+「本次調整期間設備仍可維持正常運轉，不影響整體稼動率。」
+
+「以避免影響貴司生產安排為優先。」
+
+「確保後續保養作業順利完成。」
+
+# 字數限制
+全文控制在 150 字以內。
+
+# 格式
+請以正式商務 Email 格式撰寫，包含：
+
+主旨：
+稱謂：
+正文：
+結尾：
+
+不要加入額外說明、文案解析或寫作分析，只提供可以直接寄給客戶的完整版本。
+
+# 最終檢查
+完成後請自行確認：
+
+□ 是否明確說明保養時間順延一週？
+□ 是否說明排程調整原因？
+□ 是否降低客戶對生產影響的疑慮？
+□ 是否強調生產不中斷與稼動率？
+□ 是否維持正式、婉轉且具客戶導向的語氣？
+□ 是否提供兩個明確的下一步時間選項？
+□ 是否控制在 150 字以內？
+□ 是否可以直接寄給客戶？</code></pre></div></div><h3 id="3b69fbe8-f70c-8092-ade1-de4a9f728873" class="" dir="auto">✅ 實作：改寫你的第一句提示詞</h3><ul id="3b69fbe8-f70c-8058-b8d8-f1c921973c66" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">拿出你平常下給 AI 的一句提示詞（如：請修潤下文）</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8047-9a6f-f87f2781de93" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">依「角色／任務／情境／格式」四段式重寫</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8010-8174-c684d923ccbe" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">比較兩次產出的差異，哪裡不一樣？</span><div class="indented"></div></li></ul><p id="3b69fbe8-f70c-80d9-b0f6-ddb58eaef3d4" class="" dir="auto">若手邊沒有現成提示詞，可直接套用下方起始範例練習：</p><pre id="3b69fbe8-f70c-80d3-8cc2-ed999a51183a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請幫我寫一封信給客戶。〔原始模糊提示詞，請依角色／任務／情境／格式框架改寫為結構化版本〕</code></pre><hr id="3b69fbe8-f70c-8062-9d49-c89709434d97" dir="auto"/><h2 id="3b69fbe8-f70c-8063-9204-c75b7296f9be" class="" dir="auto">🎙️ 單元二：會議紀錄自動化</h2><div id="3b79fbe8-f70c-80a8-af68-e4cd922ee71a" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8079-9657-e00f15747d3a" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-8073-8106-eccbf724579a" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit3.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit3.png"><img style="width:623.99853515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit3.png"/></a></figure></div><div id="3b79fbe8-f70c-8089-bd63-c93c2345e3d7" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b69fbe8-f70c-8062-a222-f240861a0835" class="" dir="auto">情境故事：大壯的會議夢魘</h3><p id="3b69fbe8-f70c-80d5-8236-ecd33930e738" class="" dir="auto">大壯每次開完客戶技術會議，都要花一小時聽錄音整理紀錄，還常常漏記待辦事項負責人。</p><blockquote id="3b69fbe8-f70c-805b-b952-c5320b8d95ff" class="" dir="auto">✏️ <strong>現況回饋</strong>：寫下你目前整理一場會議紀錄平均花費的時間與步驟。</blockquote></div></div><h3 id="3b79fbe8-f70c-80d6-9fbb-d8288187e4b7" class="" dir="auto">精實版的會議記錄範例｜<a href="https://notebook.google.com/">Gemini Notebook</a></h3><ul id="3b79fbe8-f70c-8006-ba2c-d0a317c859d9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">上傳至少一則會議記錄的錄音檔案，或搜尋網路公開資源做練習（<a href="https://www.oge.gov.taipei/cp.aspx?n=14712AC5F65C78A3">示範檔案</a>），需符合 Gemini Notebook 所能接受的檔案類型，包含 <mark class="highlight-red" data-notion-highlight="red"><strong>MP3、WAV、M4A</strong></mark> 等常見格式，每個音訊檔案的<mark class="highlight-red" data-notion-highlight="red"><strong>大小上限為 200MB</strong></mark>，以下示範為請將檔案先行下載存放。<figure id="3b79fbe8-f70c-80f7-b8dc-db63e234a32f" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image.png"/></a></figure></li></ul><ul id="3b79fbe8-f70c-808a-b023-fafcc7b62d46" class="bulleted-list" dir="auto"><li style="list-style-type:disc">在 Gemini Notebook 中「新增來源」→ 「上傳檔案」，將音檔上傳至「來源區」。</li></ul><ul id="3b79fbe8-f70c-80b9-b966-ea0d56af8f67" class="bulleted-list" dir="auto"><li style="list-style-type:disc">上傳完成後點選檔案即可以看見逐字稿，<mark class="highlight-red" data-notion-highlight="red"><strong>良好的會議秩序與錄音裝置</strong></mark>，影響逐字稿品質甚巨；檔案上傳後仍可以調整名稱。<figure id="3b79fbe8-f70c-803c-831d-fc2cf88783e5" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%201.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%201.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%201.png"/></a></figure></li></ul><ul id="3b79fbe8-f70c-803f-a624-d501fb6f7d67" class="bulleted-list" dir="auto"><li style="list-style-type:disc">在 Gemini Notebook 的「對話區」輸入製作會議記錄的提示詞，考量會議錄音檔可能會有多個或多段，建議明確指出檔案名稱。<pre id="3b79fbe8-f70c-80d3-abe7-c1649a290f0f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">會議記錄提示詞：
+請根據「檔案名稱」會議錄音檔，幫我整理出結構清晰的重點。請嚴格遵守以下格式：
+會議核心目的： 用一句話說明。
+關鍵討論觀點： 條列式列出 3-5 個重要論點，並簡述理由。
+最終決策： 明確列出大家拍板定案的項目（若無，請標記「未定」）。
+待辦事項 (Action Items)： 依照「負責人」分類，列出「任務內容」與「截止日期」。若內容未提到負責人或期限，請標示為「待確認」。
+待討論事項： 有哪些問題尚未解決，需要下次會議討論？ 請嚴格依據上傳的文件內容進行分析，不要加入任何文件以外的推測。</code></pre><figure id="3b79fbe8-f70c-8069-b2ae-e3a292b05806" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%202.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%202.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%202.png"/></a></figure></li></ul><ul id="3b79fbe8-f70c-80f2-aa53-da4064458cfc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">可在 Gemini Notebook 的筆記本進一步設定對話，包含「對話的目標、風格或角色」或「回覆內容長度」，<mark class="highlight-red" data-notion-highlight="red"><strong>後續 Gemini Notebook 將遵守相關長度設定</strong></mark>，設定進行調整，分別為「預設」、「較長」、「較短」。<figure id="3b79fbe8-f70c-8001-ab50-f5407b6dc336" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%203.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%203.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%203.png"/></a></figure></li></ul><div id="3b99fbe8-f70c-80c2-b159-f873f0f0a885" class="column-list" data-notion-column-list="" dir="auto"><div id="3b99fbe8-f70c-8010-ae59-dbc942f05b53" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><details id="3b89fbe8-f70c-80d0-8919-c60efa97ab83" open="" class="toggle" dir="auto"><summary>較長</summary><div class="indented"><p id="3b89fbe8-f70c-80ea-a2e2-e5bb4c65dfd9" class="" dir="auto">根據您提供的會議紀錄，以下為您整理的重點內容：</p><p id="3b89fbe8-f70c-8001-9bb4-c0133f751f7e" class="" dir="auto"><strong>會議核心目的：</strong><br/>審議臺北市各項性別平等政策執行成果（如友善家庭職場與數位平權），並針對因應「性平三法」修法後的配套計畫、新一期性別主流化總計畫及國際會議參與計畫進行討論與決議。</p><p id="3b89fbe8-f70c-806d-92ac-dedbd1182c35" class="" dir="auto"><strong>關鍵討論觀點：</strong></p><ul id="3b89fbe8-f70c-80c4-9856-d6d15e00ec34" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>精準協助生理需求與處境不利學生：</strong> 教育局回報生理用品領取數據中，處境不利學生佔比達 55.28%，顯示該政策具高度精準度。委員建議未來應透過系統優化，更精確地追蹤並制定對策，以確實協助處境不利的學子。</li></ul><ul id="3b89fbe8-f70c-8049-9234-f9b118b548a0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>友善職場指標的國際行銷與品牌建立：</strong> 委員認為臺北市推動的「職場性別平等指標」已達亞洲領先地位，應加強行銷得獎企業（如農、漁、畜產公司等傳統產業轉型案例）的歷程，藉此吸引更多外商與大型企業參與，並建立臺北友善城市的國際形象。</li></ul><ul id="3b89fbe8-f70c-80fc-8fd8-ff1bec02282a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>數據驅動的性平治理解析：</strong> 委員建議進行「時間運用調查」，藉由了解市民在工作、家務與休閒的時間分配差異，作為未來制定交通、托育及長照政策的重要依據，以解決性別分工不均的結構性問題。</li></ul><ul id="3b89fbe8-f70c-8019-be71-d9a696725d47" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>應對「性平三法」修法的積極轉型：</strong> 配合法規修正，各局處需強化校園及職場的性騷擾防治宣導，並將性別意識培力時數納入主管與專辦人員的必要考核，確保行政體系具備處理新法案件的專業能。</li></ul><ul id="3b89fbe8-f70c-80a2-9329-c4fb02a74a3e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>擴大性別友善範疇至多元族群：</strong> 委員提出應將性別平等的概念提升至「多元、公平、共融 (DEI)」，不僅關注女性與育兒，更應包含跨性別者、同志族群在公共空間（如游泳池）與職場所面臨的挑戰。</li></ul><p id="3b89fbe8-f70c-805f-a772-d4ca94e064f8" class="" dir="auto"><strong>最終決策：</strong></p><ul id="3b89fbe8-f70c-8052-a9f1-d55cc97acc80" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>拍板通過：</strong><ol type="1" id="3b89fbe8-f70c-80d6-963a-e1999f25908a" class="numbered-list" start="1" dir="auto"><li>「臺北市政府推展性別主流化工作總計畫 (113-116年)」。</li></ol><ol type="1" id="3b89fbe8-f70c-800a-86c4-f3d3c7a94a02" class="numbered-list" start="2" dir="auto"><li>「臺北市民政策和計畫 2.0 版本」草案方向。</li></ol><ol type="1" id="3b89fbe8-f70c-80ef-9e1c-d88393e03774" class="numbered-list" start="3" dir="auto"><li>參與 2024 年「聯合國婦女地位委員會 (CSW68)」及周邊論壇計畫，並啟動推選程序。</li></ol><ol type="1" id="3b89fbe8-f70c-804b-99fc-eb328a637c49" class="numbered-list" start="4" dir="auto"><li>確認前次會議紀錄。</li></ol></li></ul><ul id="3b89fbe8-f70c-809a-944f-d9f575ccc05a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>持續列管：</strong> 校園生理用品提供政策、友善跨性別運動環境評估案、數位時代平權（臺北通數據分析）及友善家庭職場推動案。</li></ul><p id="3b89fbe8-f70c-806d-b14f-f564f0d86afe" class="" dir="auto"><strong>待辦事項 (Action Items)：</strong></p><table id="3b89fbe8-f70c-80c2-a1a3-f0d5aada0c80" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b89fbe8-f70c-8045-98fd-e9825129ed47" dir="ltr"><th id="f&lt;P;" class="simple-table-header-color simple-table-header">負責人</th><th id="^_FI" class="simple-table-header-color simple-table-header">任務內容</th><th id="awSQ" class="simple-table-header-color simple-table-header">截止日期</th></tr></thead><tbody><tr id="3b89fbe8-f70c-8022-b772-e2cfe301da96" dir="ltr"><td id="f&lt;P;" class=""><strong>教育局</strong></td><td id="^_FI" class="">完成生理用品領取系統優化，以便自動統計並分析處境不利學生數據</td><td id="awSQ" class="">113年下學期</td></tr><tr id="3b89fbe8-f70c-8046-991a-f2e1595d2bd9" dir="ltr"><td id="f&lt;P;" class=""><strong>資訊局</strong></td><td id="^_FI" class="">針對「臺北通」月活躍用戶進行行為動察分析（如繳費、瀏覽市政資訊等途徑分析）</td><td id="awSQ" class="">待確認</td></tr><tr id="3b89fbe8-f70c-809f-95e8-f8d7bd5c18b1" dir="ltr"><td id="f&lt;P;" class=""><strong>產業局</strong></td><td id="^_FI" class="">整理並提供現有創業服務的性別統計分析，以及未來針對女性創業者的具體規劃</td><td id="awSQ" class="">112年11月</td></tr><tr id="3b89fbe8-f70c-80b4-a47c-d950da53e401" dir="ltr"><td id="f&lt;P;" class=""><strong>新平辦</strong></td><td id="^_FI" class="">統整各局處關於友善家庭與職場的創意具體措施，並整理得獎企業故事進行行銷推廣</td><td id="awSQ" class="">下次會議</td></tr><tr id="3b89fbe8-f70c-80a6-a74b-d50f45184d40" dir="ltr"><td id="f&lt;P;" class=""><strong>人事處、新平辦</strong></td><td id="^_FI" class="">準備並啟動參與下一屆「台灣同志職場指標」認證之程序</td><td id="awSQ" class="">下屆報名期</td></tr><tr id="3b89fbe8-f70c-808e-9149-c4a2398eea26" dir="ltr"><td id="f&lt;P;" class=""><strong>研考會</strong></td><td id="^_FI" class="">研議臺北市市民「時間運用調查」之執行成本與效益評估</td><td id="awSQ" class="">待確認</td></tr></tbody></table><p id="3b89fbe8-f70c-80a4-b5e4-cef6c6f2f961" class="" dir="auto"><strong>待討論事項：</strong></p><ol type="1" id="3b89fbe8-f70c-80fd-9f03-e500fcb4dfc7" class="numbered-list" start="1" dir="auto"><li>如何整併市府各局處現有獎項（如性平職場認證、亮點企業獎等），打造一個具國際知名度且對企業有高度吸引力的「臺北整合性大獎」（如黃金性平獎等名稱）。</li></ol><ol type="1" id="3b89fbe8-f70c-8048-9458-faf783290557" class="numbered-list" start="2" dir="auto"><li>針對「照顧不離職」議題，如何更具體地透過企業合作提供員工長照資源諮詢與快速通道服務。</li></ol><ol type="1" id="3b89fbe8-f70c-805f-9793-fb0faafb4ef9" class="numbered-list" start="3" dir="auto"><li>性平三法填報表單後，各機關反映之執行難點與實務調適建議。</li></ol></div></details></div><div id="3b99fbe8-f70c-8022-90e0-d2eb03bacb41" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><details id="3b89fbe8-f70c-805a-ae0b-c4fe4475ebb1" open="" class="toggle" dir="auto"><summary>較短</summary><div class="indented"><p id="3b89fbe8-f70c-80fd-9fbf-f0ccfb7f6d96" class="" dir="auto">根據「臺北市性別平等委員會第14屆第3次委員會議」錄音內容，整理重點如下：</p><p id="3b89fbe8-f70c-80d0-ab6c-e673068bbf09" class="" dir="auto"><strong>會議核心目的：</strong><br/>審議臺北市各項性別平等政策（如友善校園生理用品、友善運動環境及數位平權）之執行成效，並正式核定新一期性別主流化計畫及 2024 年國際會議參與規劃。</p><p id="3b89fbe8-f70c-80b6-801a-c9b529f0d882" class="" dir="auto"><strong>關鍵討論觀點：</strong></p><ul id="3b89fbe8-f70c-80fe-b87c-f40d00369c21" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>生理用品補助精準對接弱勢需求</strong>：調查顯示領取生理用品的學生中，處境不利學生佔比達 55.28%，顯示政策精準協助了弱勢群體，未來需透過系統優化自動化追蹤數據。</li></ul><ul id="3b89fbe8-f70c-8092-98be-eb0359cdc02e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>建立職場性平指標的國際品牌與行銷</strong>：委員認為臺北市性平指標具亞洲領先地位，應加強行銷得獎企業（如農漁產傳統產業）的轉型故事，以吸引外商投入並建立國際形象。</li></ul><ul id="3b89fbe8-f70c-80c9-afce-f2f9e93119cf" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>重啟「時間運用調查」以輔助政策制定</strong>：建議透過調查了解市民在工作、家務與休閒的時間分配差異，作為未來交通、托育及長照政策跨局處規劃的重要依據。</li></ul><ul id="3b89fbe8-f70c-80a6-a45f-c6ba812a44d4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>因應「性平三法」修法之專業培力</strong>：配合新法修正，各局處需強化校園及職場性騷擾防治，並規定主管及專辦人員每年需接受特定時數的進階性平教育訓練。</li></ul><p id="3b89fbe8-f70c-8070-97c6-cbb83447e02e" class="" dir="auto"><strong>最終決策：</strong></p><ul id="3b89fbe8-f70c-80bd-aac3-f353707f1b09" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>拍板定案</strong>：<ol type="1" id="3b89fbe8-f70c-804a-a2c6-c954eb431672" class="numbered-list" start="1" dir="auto"><li>確認前次（第14屆第2次）會議紀錄。</li></ol><ol type="1" id="3b89fbe8-f70c-8058-ae86-efd3a374a1a1" class="numbered-list" start="2" dir="auto"><li>通過「臺北市政府推展性別主流化工作總計畫 (113-116年)」。</li></ol><ol type="1" id="3b89fbe8-f70c-8090-9bc5-fd8ef8732837" class="numbered-list" start="3" dir="auto"><li>通過參與 2024 年「聯合國婦女地位委員會 (CSW68)」及周邊論壇計畫。</li></ol></li></ul><ul id="3b89fbe8-f70c-807f-9ff3-c006d0d19f5d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>持續列管</strong>：校園生理用品提供政策、友善跨性別運動環境評估案、數位時代平權（臺北通分析）及推動友善家庭職場案。</li></ul><p id="3b89fbe8-f70c-8079-aab1-e93fa73fab07" class="" dir="auto"><strong>待辦事項 (Action Items)：</strong></p><table id="3b89fbe8-f70c-80ff-a18e-e912560d786f" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b89fbe8-f70c-80f8-88c8-d1671ff27ee3" dir="ltr"><th id="plKD" class="simple-table-header-color simple-table-header">負責人</th><th id="dvSP" class="simple-table-header-color simple-table-header">任務內容</th><th id="ZzcC" class="simple-table-header-color simple-table-header">截止日期</th></tr></thead><tbody><tr id="3b89fbe8-f70c-805d-8a41-c5e6baea292b" dir="ltr"><td id="plKD" class=""><strong>教育局</strong></td><td id="dvSP" class="">完成生理用品領取系統優化，以自動統計分析處境不利學生數據</td><td id="ZzcC" class="">113年下學期</td></tr><tr id="3b89fbe8-f70c-809c-8fb0-d0627442f90c" dir="ltr"><td id="plKD" class=""><strong>資訊局</strong></td><td id="dvSP" class="">針對「臺北通」月活躍用戶進行行為路徑動察分析</td><td id="ZzcC" class="">待確認</td></tr><tr id="3b89fbe8-f70c-802a-a869-d9d3503e5a82" dir="ltr"><td id="plKD" class=""><strong>產業局</strong></td><td id="dvSP" class="">提供現有創業服務之性別統計分析與針對女創家的輔導方案</td><td id="ZzcC" class="">112年11月</td></tr><tr id="3b89fbe8-f70c-80eb-9eca-ca48e2c95e03" dir="ltr"><td id="plKD" class=""><strong>新平辦</strong></td><td id="dvSP" class="">統整友善家庭職場創意措施，並整理得獎企業故事進行行銷推廣</td><td id="ZzcC" class="">下次會議</td></tr><tr id="3b89fbe8-f70c-80a0-bbb3-dae2a462ef49" dir="ltr"><td id="plKD" class=""><strong>人事處</strong></td><td id="dvSP" class="">籌備並啟動參與下一屆「台灣同志職場指標」認證程序</td><td id="ZzcC" class="">下屆報名期</td></tr><tr id="3b89fbe8-f70c-806a-bdf1-e3cdfde81f61" dir="ltr"><td id="plKD" class=""><strong>研考會</strong></td><td id="dvSP" class="">評估執行市民「時間運用調查」之成本與技術可行性</td><td id="ZzcC" class="">待確認</td></tr></tbody></table><p id="3b89fbe8-f70c-800f-a763-f41670b6eab1" class="" dir="auto"><strong>待討論事項：</strong></p><ol type="1" id="3b89fbe8-f70c-80b1-b9a1-d25f1363b6f7" class="numbered-list" start="1" dir="auto"><li>如何整合市府各局處獎項（如性平認證、亮點企業獎），打造具國際影響力的「臺北整合性大獎」。</li></ol><ol type="1" id="3b89fbe8-f70c-80da-b48f-f3ceb82702fc" class="numbered-list" start="2" dir="auto"><li>針對「照顧不離職」議題，如何具體透過企業合作提供員工長照資源諮詢與快速通道服務。</li></ol><ol type="1" id="3b89fbe8-f70c-80fe-bd95-e434bd9149dd" class="numbered-list" start="3" dir="auto"><li>各機關填寫「性平三法 2.0」配套計畫表單時反映的執行難點與調適建議。</li></ol></div></details></div></div><h3 id="3b69fbe8-f70c-80a0-9657-e0f25f982337" class="" dir="auto">會議紀錄類型</h3><div id="3b79fbe8-f70c-800b-8161-ecf26a7fac98" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8016-a3e0-e8f4f845c77a" style="width:56.25%" class="column" data-notion-column-ratio="0.5625" dir="auto"><ol type="1" id="3b69fbe8-f70c-8092-9c47-f3975fce3fbe" class="numbered-list" start="1" dir="auto"><li>整理前先辨識「<strong>會議屬性</strong>」，決定紀錄重點：<table id="3b69fbe8-f70c-807c-b75a-da48273ed58e" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b69fbe8-f70c-801c-9961-e7596a83dcc2" dir="ltr"><th id="Q{KZ" class="simple-table-header-color simple-table-header">類型</th><th id="QCBk" class="simple-table-header-color simple-table-header">說明</th><th id=";d[A" class="simple-table-header-color simple-table-header" style="width:201.78692626953125px"><mark class="highlight-red" data-notion-highlight="red"><strong>紀錄重點（提示詞高度關聯）</strong></mark></th></tr></thead><tbody><tr id="3b69fbe8-f70c-8099-a56f-c16744cdca87" dir="ltr"><td id="Q{KZ" class="">📢 報告型（資訊分享會議）</td><td id="QCBk" class="">同步資訊，非做決議</td><td id=";d[A" class="" style="width:201.78692626953125px">完整記錄分享的資訊與後續公告</td></tr><tr id="3b69fbe8-f70c-8024-afba-e555a4ab622d" dir="ltr"><td id="Q{KZ" class="">💬 討論型（腦力激盪與溝通）</td><td id="QCBk" class="">激盪想法，非立即定案</td><td id=";d[A" class="" style="width:201.78692626953125px">完整呈現不同觀點，不強求收斂結論</td></tr><tr id="3b69fbe8-f70c-8030-bb8f-fcba5bfe66ac" dir="ltr"><td id="Q{KZ" class="">✅ 決策型（決議與投票會議）</td><td id="QCBk" class="">做出正式決議</td><td id=";d[A" class="" style="width:201.78692626953125px">明確記錄決議、投票結果、負責人與期限</td></tr></tbody></table></li></ol></div><div id="3b79fbe8-f70c-80ac-b1da-f23a3546ffa0" style="width:43.74999999999999%" class="column" data-notion-column-ratio="0.43749999999999994" dir="auto"><ol type="1" id="3b69fbe8-f70c-80a5-9a6d-c3b025f10716" class="numbered-list" start="2" dir="auto"><li>若依記錄「<strong>詳盡程度</strong>」分類：</li></ol><ul id="3b69fbe8-f70c-8057-99a7-c8be30c33624" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>決議式（行動導向）</strong>：只記結論、待辦事項（Action Items）、負責人與截止日，最省時且實用。</li></ul><ul id="3b69fbe8-f70c-809e-a420-edeadc417988" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><mark class="highlight-red" data-notion-highlight="red"><strong>摘要式（重點記錄）</strong></mark>：涵蓋出席人員、議程、討論摘要與<mark class="highlight-red" data-notion-highlight="red"><strong>未解問題</strong></mark>，兼顧脈絡與重點。</li></ul><ul id="3b69fbe8-f70c-8091-93c7-fe8f742cd874" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>逐字稿（完整記錄）</strong>：逐字記錄所有發言，適用於法說會、董事會、公聽會或需具法律效力的正式場合。</li></ul></div></div><blockquote id="3b79fbe8-f70c-805a-b54e-d33cd2b77b92" class="" dir="auto">✏️ <strong>現況回饋</strong>：目前公司的會議記錄以哪一種類型居多？是否有存在改善空間？</blockquote><h3 id="3b69fbe8-f70c-8062-bb21-f0c4e95a9fed" class="" dir="auto">核心流程：會議記錄作業流程</h3><pre id="3b69fbe8-f70c-80a0-bd27-c95b9eb8d744" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph LR
+    A(錄音＋品質) --&gt; B(逐字稿)
+    B --&gt; C(提示詞＋\n專有名詞資料庫)
+    C --&gt; D(逐字稿修潤版)
+    C --&gt; E(結構化摘要)
+    D --&gt; F(審核清單)
+    E --&gt; F
+    F --&gt; G(資料庫)</code></pre><blockquote id="3b69fbe8-f70c-80ff-a682-fa3c4e0b6e38" class="" dir="auto">💡 提示詞與資料庫須於會議「開始前」備妥。本單元以 <strong>Gemini Notebook</strong> 處理錄音／逐字稿並產出結構化摘要。</blockquote><h3 id="3b69fbe8-f70c-809f-8635-c2a4e0356e61" class="" dir="auto">發揮又快又準的「專有名詞資料庫」</h3><p id="3b69fbe8-f70c-8055-bd77-d297c735a342" class="" dir="auto">「專有名詞資料庫」：讓 AI 聽懂你的產業術語，像是「Windows 使用者造詞」、「iOS 使用者辭典」、「XLOOKUP 函數」、「<a href="https://ink.dwave.cc/zh-TW/features/vocabulary">Meet iNK 術語清單</a>」等概念，可以讓 AI 精準辨識會議中所提到的內容，像是代號、料號、人物、地點、產品、簡稱或別名、英文（亦可新增其他語言）等專有名詞。</p><div id="3b99fbe8-f70c-80fe-bc4c-f4318202b797" class="column-list" data-notion-column-list="" dir="auto"><div id="3b99fbe8-f70c-80d2-b4e5-c2b06acf11dd" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><figure id="3b79fbe8-f70c-8001-ab0b-e21e9c2b5242" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%204.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%204.png"><img style="width:954.9999389648438px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%204.png"/></a><figcaption>Windows 使用者造詞</figcaption></figure></div><div id="3b99fbe8-f70c-8074-80e8-c59bc14d07c2" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><figure id="3b79fbe8-f70c-80d3-a689-f7fac57afbbb" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%BD%BF%E7%94%A8%E8%80%85%E8%BE%AD%E5%85%B8.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%BD%BF%E7%94%A8%E8%80%85%E8%BE%AD%E5%85%B8.png"><img style="width:273.0610656738281px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%BD%BF%E7%94%A8%E8%80%85%E8%BE%AD%E5%85%B8.png"/></a><figcaption>iOS 使用者辭典</figcaption></figure></div><div id="3b99fbe8-f70c-8097-889f-c98c9733bd32" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><figure id="3b79fbe8-f70c-8048-b6b3-d1d5c95718b3" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%205.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%205.png"><img style="width:2187px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%205.png"/></a><figcaption>XLOOKUP 函數</figcaption></figure></div></div><p id="3b69fbe8-f70c-800a-ac69-c3111d3f6672" class="" dir="auto">會議期間的「聲控」技巧，在會議進行中說出約定的「口號」，由 AI 透過「專有指令」資料庫辨識轉換為<mark class="highlight-red" data-notion-highlight="red"><strong>『指令』</strong></mark>，如「列管追蹤」、「解除列管」， AI 事後將分別辨識該段為「待辦事項」或「完成事項」。</p><blockquote id="3b69fbe8-f70c-80e4-8e35-e67974271a90" class="" dir="auto">📊 建議將「專有名詞資料庫」存放於 <strong><span style="border-bottom:0.05em solid">Google Sheets</span></strong>，方便團隊共用與維護，且可直接於 <strong>Gemini</strong> 與 <strong>Gemini Notebook</strong> 中調用，不需重複複製貼上。另一個好處則是可以轉為 csv 格式在其他 AI 工具中使用。</blockquote><p id="3b79fbe8-f70c-80d7-9ad0-fd1d52d42cda" class="" dir="auto">
+</p><h3 id="3b69fbe8-f70c-8033-bd38-edf8974a02e0" class="" dir="auto"><strong>「專有名詞資料庫」欄位設計｜</strong><strong><a href="https://docs.google.com/spreadsheets/d/1LtwfJGBI_Hw1fAxqAx9fnfzuBKHbUBuKmCBs60kM4tY/edit?gid=0#gid=0">Google spreadsheets</a></strong></h3><div id="3b79fbe8-f70c-8090-b3e1-cc3fccb253cd" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80b1-85fc-dc72b87a1a54" style="width:68.75%" class="column" data-notion-column-ratio="0.6875" dir="auto"><table id="3b69fbe8-f70c-80e3-a282-f1243fd3f985" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b69fbe8-f70c-804f-9c7d-c3d24c16485f" dir="ltr"><th id="BL&lt;{" class="simple-table-header-color simple-table-header">欄位</th><th id="t`v[" class="simple-table-header-color simple-table-header" style="width:473.99853515625px">說明</th></tr></thead><tbody><tr id="3b69fbe8-f70c-803f-91bf-d80f57c68cfc" dir="ltr"><td id="BL&lt;{" class="">分類</td><td id="t`v[" class="" style="width:473.99853515625px">統一規格：<code>指令</code>、<code>代號</code>、<code>產業術語</code>、<code>人物</code>等</td></tr><tr id="3b69fbe8-f70c-8075-833e-f907e7502622" dir="ltr"><td id="BL&lt;{" class="">標準名稱</td><td id="t`v[" class="" style="width:473.99853515625px">官方正式名稱或系統標準詞彙</td></tr><tr id="3b69fbe8-f70c-8093-a008-f8bf84b650e9" dir="ltr"><td id="BL&lt;{" class="">常見別名與簡稱</td><td id="t`v[" class="" style="width:473.99853515625px">口語、台式英文、縮寫或同音字，多個用『半形分號 <code>;</code> 』隔開</td></tr><tr id="3b69fbe8-f70c-8029-beed-ca08f46a28f1" dir="ltr"><td id="BL&lt;{" class="">英文名稱</td><td id="t`v[" class="" style="width:473.99853515625px">對應半導體界通用英文；人物則填英文名</td></tr><tr id="3b69fbe8-f70c-80e0-9a43-c9bc862377db" dir="ltr"><td id="BL&lt;{" class="">定義與上下文</td><td id="t`v[" class="" style="width:473.99853515625px">背景知識，協助 LLM 理解對話上下文</td></tr><tr id="3b69fbe8-f70c-809e-8088-c895c87e08f3" dir="ltr"><td id="BL&lt;{" class="">指令動作</td><td id="t`v[" class="" style="width:473.99853515625px"><strong><span style="border-bottom:0.05em solid">分類為「指令」時必填</span></strong><span style="border-bottom:0.05em solid">，白話寫下希望 AI 執行的邏輯</span></td></tr><tr id="3b69fbe8-f70c-8052-8ee3-d77d4c2ed81d" dir="ltr"><td id="BL&lt;{" class="">熱詞權重</td><td id="t`v[" class="" style="width:473.99853515625px">STT 語音辨識用，<code>高</code>／<code>中</code>／<code>低</code>（<code>高</code>＝極易誤判，如 Steve／Steven）</td></tr><tr id="3b69fbe8-f70c-80b4-a0aa-f2bdb40c07a6" dir="ltr"><td id="BL&lt;{" class="">更新日期</td><td id="t`v[" class="" style="width:473.99853515625px"><code>YYYY-MM-DD</code></td></tr></tbody></table></div><div id="3b79fbe8-f70c-8004-80a0-e5d0b5fb01a4" style="width:31.249999999999993%" class="column" data-notion-column-ratio="0.31249999999999994" dir="auto"><figure id="3b79fbe8-f70c-800c-bd4d-fe1ff8971474" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%206.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%206.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%206.png"/></a><figcaption>專有名詞資料庫</figcaption></figure><figure id="3b79fbe8-f70c-803e-b9ca-f48abbb132b6" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%207.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%207.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%207.png"/></a><figcaption>資料驗證規則</figcaption></figure></div></div><h3 id="3b69fbe8-f70c-8002-9a25-c8b93d871f10" class="" dir="auto"><strong>「專有名詞資料庫」｜</strong><strong><a href="https://docs.google.com/spreadsheets/d/1LtwfJGBI_Hw1fAxqAx9fnfzuBKHbUBuKmCBs60kM4tY/edit?gid=0#gid=0">Google spreadsheets</a></strong></h3><p id="3b79fbe8-f70c-8040-b70c-e7f6a5f22e1a" class="" dir="auto">進階做法：</p><ul id="3b89fbe8-f70c-80fc-b166-d37739c8970a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong><span style="border-bottom:0.05em solid">新進員工</span></strong>訓練使用，讓新手開會不再搞不清楚狀況。</li></ul><ul id="3b89fbe8-f70c-807e-a346-e458ad3dd9da" class="bulleted-list" dir="auto"><li style="list-style-type:disc">反向操作將客戶名稱通通變成代號，如會議記錄上只會出現2330，內部人員能夠理解為台積電，同時減少機敏資料外流之損害。</li></ul><table id="3b69fbe8-f70c-8054-979c-c247815e2bca" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b69fbe8-f70c-8025-bb52-eb1ae7fbb335" dir="ltr"><th id="Uc^^" class="simple-table-header-color simple-table-header" style="width:77.99999237060547px">分類</th><th id="hezG" class="simple-table-header-color simple-table-header" style="width:78.99999237060547px">標準名稱</th><th id="YeL{" class="simple-table-header-color simple-table-header">常見別名與簡稱</th><th id="aP\T" class="simple-table-header-color simple-table-header">英文名稱</th><th id="e`yt" class="simple-table-header-color simple-table-header">定義與上下文</th><th id="dlk;" class="simple-table-header-color simple-table-header" style="width:176.60226440429688px">指令動作</th><th id="W}wp" class="simple-table-header-color simple-table-header" style="width:75.99999237060547px">熱詞權重</th><th id="^NTb" class="simple-table-header-color simple-table-header" style="width:101.00709533691406px">更新日期</th></tr></thead><tbody><tr id="3b69fbe8-f70c-8042-88d5-fa79a4d3ff1a" dir="ltr"><td id="Uc^^" class="" style="width:77.99999237060547px"><strong><span style="border-bottom:0.05em solid">指令</span></strong></td><td id="hezG" class="" style="width:78.99999237060547px"><mark class="highlight-red" data-notion-highlight="red"><strong><span style="border-bottom:0.05em solid">列管追蹤</span></strong></mark></td><td id="YeL{" class="">追蹤;盯一下</td><td id="aP\T" class="">Track This</td><td id="e`yt" class="">會議中口頭標記需持續追蹤的事項</td><td id="dlk;" class="" style="width:176.60226440429688px">偵測到此關鍵字時，標記為待辦事項，於摘要列出並註記負責人與期限</td><td id="W}wp" class="" style="width:75.99999237060547px">中</td><td id="^NTb" class="" style="width:101.00709533691406px">2026-08-10</td></tr><tr id="3b69fbe8-f70c-8015-8d0f-f2a6a09bca0d" dir="ltr"><td id="Uc^^" class="" style="width:77.99999237060547px"><strong><span style="border-bottom:0.05em solid">指令</span></strong></td><td id="hezG" class="" style="width:78.99999237060547px"><mark class="highlight-red" data-notion-highlight="red"><strong><span style="border-bottom:0.05em solid">解除列管</span></strong></mark></td><td id="YeL{" class="">結案;不用追了</td><td id="aP\T" class="">Close Tracking</td><td id="e`yt" class="">口頭宣告先前列管事項已完成</td><td id="dlk;" class="" style="width:176.60226440429688px">偵測到此關鍵字時，將對應事項標記為已結案，不再列入待辦清單</td><td id="W}wp" class="" style="width:75.99999237060547px">中</td><td id="^NTb" class="" style="width:101.00709533691406px">2026-08-10</td></tr><tr id="3b69fbe8-f70c-80d4-8e09-e4f811a6646d" dir="ltr"><td id="Uc^^" class="" style="width:77.99999237060547px"><strong><span style="border-bottom:0.05em solid">人物</span></strong></td><td id="hezG" class="" style="width:78.99999237060547px"><mark class="highlight-red" data-notion-highlight="red"><strong><span style="border-bottom:0.05em solid">詹健中</span></strong></mark></td><td id="YeL{" class="">詹教育長;健中;建中;健忠;建忠</td><td id="aP\T" class="">Steve;SC</td><td id="e`yt" class="">三誠業服務科技股份有限公司教育長</td><td id="dlk;" class="" style="width:176.60226440429688px"></td><td id="W}wp" class="" style="width:75.99999237060547px">高</td><td id="^NTb" class="" style="width:101.00709533691406px">2026-08-10</td></tr><tr id="3b69fbe8-f70c-805e-8166-e3eb991c1bef" dir="ltr"><td id="Uc^^" class="" style="width:77.99999237060547px"><strong><span style="border-bottom:0.05em solid">代號</span></strong></td><td id="hezG" class="" style="width:78.99999237060547px"><mark class="highlight-red" data-notion-highlight="red"><strong><span style="border-bottom:0.05em solid">2330</span></strong></mark></td><td id="YeL{" class="">台積電</td><td id="aP\T" class="">TSMC</td><td id="e`yt" class="">客戶公司代號，晶圓代工大廠</td><td id="dlk;" class="" style="width:176.60226440429688px"></td><td id="W}wp" class="" style="width:75.99999237060547px">低</td><td id="^NTb" class="" style="width:101.00709533691406px">2026-08-10</td></tr><tr id="3b69fbe8-f70c-809e-9c35-feca079f44f9" dir="ltr"><td id="Uc^^" class="" style="width:77.99999237060547px">產業術語</td><td id="hezG" class="" style="width:78.99999237060547px">AOI</td><td id="YeL{" class="">自動光學檢測</td><td id="aP\T" class="">Automated Optical Inspection</td><td id="e`yt" class="">自動化外觀檢測設備，常用於SMT產線</td><td id="dlk;" class="" style="width:176.60226440429688px"></td><td id="W}wp" class="" style="width:75.99999237060547px">低</td><td id="^NTb" class="" style="width:101.00709533691406px">2026-08-10</td></tr><tr id="3b69fbe8-f70c-800d-be02-ed3d9a0ef646" dir="ltr"><td id="Uc^^" class="" style="width:77.99999237060547px">產業術語</td><td id="hezG" class="" style="width:78.99999237060547px">OEE</td><td id="YeL{" class="">稼動率;設備稼動率</td><td id="aP\T" class="">Overall Equipment Effectiveness</td><td id="e`yt" class="">衡量設備稼動效率的指標</td><td id="dlk;" class="" style="width:176.60226440429688px"></td><td id="W}wp" class="" style="width:75.99999237060547px">低</td><td id="^NTb" class="" style="width:101.00709533691406px">2026-08-10</td></tr></tbody></table><h3 id="3b69fbe8-f70c-80f8-840c-e6f38566383d" class="" dir="auto">✅ 實作：建置資料庫與輸出會議記錄</h3><ul id="3b69fbe8-f70c-8085-aef4-c59ddbefc0f7" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">在 Google Sheets 建立「<mark class="highlight-red" data-notion-highlight="red"><strong>專有名詞資料庫</strong></mark>」，依上方欄位建好「表頭」</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80d4-a7cf-d3870ecf7883" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">分享「專有名詞」活頁簿給共同作業的同事</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8099-ace8-ca20f5445509" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">填入常用的「指令」、「代號」、「產業術語」與「人物」，或者複製上述範例使用</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80d8-98ef-ebca3ad52a6b" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">在 Gemini 或 Gemini Notebook 中連結<a href="https://docs.google.com/spreadsheets/d/1LtwfJGBI_Hw1fAxqAx9fnfzuBKHbUBuKmCBs60kM4tY/edit?gid=0#gid=0">試算表</a>，作為長期共用資料庫，使用前先確認是否已有<mark class="highlight-red" data-notion-highlight="red"><strong>「保持同步」</strong></mark></span><div class="indented"><figure id="3b79fbe8-f70c-8018-84f6-c23ebbaf7d1f" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%208.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%208.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%208.png"/></a></figure></div></li></ul><h3 id="3b69fbe8-f70c-80c1-9004-e634f66af55c" class="" dir="auto">提示詞範本：會議記錄（依會議類型）｜<a href="https://notebook.google.com/notebook/8f872f7a-1864-4f17-87e4-fb3173d8df8a">Gemini Notebook</a></h3><p id="3b69fbe8-f70c-80c3-94e8-fa395ede6cd7" class="" dir="auto"><strong>📢 報告型（資訊分享會議）</strong></p><div id="3b79fbe8-f70c-804e-85c2-ff06c2e4fb89" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80e9-adee-caaff26b2eaf" style="width:75%" class="column" data-notion-column-ratio="0.75" dir="auto"><pre id="3b69fbe8-f70c-8079-90c8-c3d2804cb752" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是一位專業會議記錄整理專員。這是一場「資訊分享型會議」，目的在於同步資訊而非做出決議。請閱讀以下逐字稿，並運用「專有名詞資料庫」，整理成以下格式：
+
+1. 會議主題與日期
+2. 本次分享的重點資訊（依主題分類條列）
+3. 提出的問題與現場回應（Q&amp;A整理）
+4. 後續公告事項（若有）
+5. 待辦事項（僅列出逐字稿中明確指派的任務；凡出現「列管追蹤」字樣的段落，請優先列為待辦事項；凡出現「解除列管」字樣，請將對應事項標記為已結案，不再列入待辦清單）
+
+請使用繁體中文（台灣用語）。
+
+【以下為逐字稿全文（範例，請替換為你自己的逐字稿）】
+主持人：好，我們開始今天的產線週報分享。上次列管的那台AOI設備韌體更新，處理得怎麼樣了？
+品保PM：已經處理完成了，上週五就更新完畢，目前運作正常。
+主持人：好，那這項可以解除列管了。接下來先請品保這邊跟我們同步一下這週的檢測狀況。
+品保PM：好，這週AOI整體判定的誤判率大概維持在2%左右，比上週稍微好一點。FCT測試的部分，通過率是98.5%，跟目標值差不多。
+主持人：了解，那OEE這邊呢？
+產線主管：這週OEE大概是82%，比上週低了三個百分點，主要是因為週三那台設備有臨時停機保養。
+主持人：好，這個我們列管追蹤一下，麻煩產線主管下週回報一下那台設備後續穩定的狀況。
+產線主管：沒問題。
+主持人：那Steve這邊有沒有要跟大家同步的？
+SC：有，我這邊主要是跟大家說一下，這個月開始我們會固定每兩週跟2330那邊的窗口做一次技術對接會議，如果大家有規格上的問題可以先彙整給我。
+主持人：好，那今天先同步到這邊，謝謝大家。</code></pre></div><div id="3b79fbe8-f70c-80b3-8abf-d6698503b7c9" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><details id="3b99fbe8-f70c-8054-9d94-cbb550332019" open="" class="toggle" dir="auto"><summary>這是一份根據您提供的逐字稿，並結合<strong>專有名詞資料庫</strong> 整理而成的會議紀錄：</summary><div class="indented"><h3 id="3b99fbe8-f70c-80ca-8062-d05dffbff226" class="" dir="auto">1. 會議主題與日期</h3><ul id="3b99fbe8-f70c-80a1-ad36-da0836bf0382" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>會議主題：</strong> 產線週報分享會議</li></ul><ul id="3b99fbe8-f70c-8076-b7da-ec1b1f486688" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>日期：</strong> 2026-08-10（參考資料庫更新日期）</li></ul><h3 id="3b99fbe8-f70c-803b-800b-d94634ac2e63" class="" dir="auto">2. 本次分享的重點資訊</h3><ul id="3b99fbe8-f70c-806a-94e5-dcb8c7c38219" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>品保檢測狀況 (AOI/FCT)：</strong><ul id="3b99fbe8-f70c-80b2-a315-df27acf7d9e2" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>AOI (自動光學檢測)</strong>：本週誤判率約 2%，較上週進步。</li></ul><ul id="3b99fbe8-f70c-8064-8efc-e4fcf0e1a12f" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>FCT (功能測試)</strong>：通過率為 98.5%，維持目標水準。</li></ul></li></ul><ul id="3b99fbe8-f70c-801e-889c-e14bfa202866" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>設備稼動率 (OEE)：</strong><ul id="3b99fbe8-f70c-800b-ad57-cd39131c314e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">本週 <strong>OEE</strong> 為 82%，較上週下降 3%。</li></ul><ul id="3b99fbe8-f70c-80ab-b4da-e6fdb6bd6f33" class="bulleted-list" dir="auto"><li style="list-style-type:circle">主因為週三設備進行臨時停機保養。</li></ul></li></ul><ul id="3b99fbe8-f70c-805a-867b-f115a5d803a3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>外部技術對接 (2330/台積電)：</strong><ul id="3b99fbe8-f70c-80e1-beb5-f674d6ac4a56" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>詹健中 (Steve/SC)</strong> 說明：本月起每兩週固定與 <strong>2330 (台積電)</strong> 窗口進行技術對接會議。</li></ul></li></ul><h3 id="3b99fbe8-f70c-801c-8be8-e876b8afe02e" class="" dir="auto">3. 提出的問題與現場回應</h3><ul id="3b99fbe8-f70c-8002-a080-ea7cd617b6c8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>問題：</strong> 上次列管的 AOI 設備韌體更新進度為何？<ul id="3b99fbe8-f70c-809c-8f71-d9829b9c9a2f" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>回應：</strong> 品保 PM 表示已於上週五更新完畢，目前運作正常。</li></ul></li></ul><ul id="3b99fbe8-f70c-80e1-8e13-f4cc1c669d2c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>問題：</strong> 本週 OEE 下降的原因？<ul id="3b99fbe8-f70c-803f-b13b-c6a646cc2cb7" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>回應：</strong> 產線主管說明是受到週三設備臨時停機保養的影響。</li></ul></li></ul><h3 id="3b99fbe8-f70c-808d-bcae-d0d602c9c21c" class="" dir="auto">4. 後續公告事項</h3><ul id="3b99fbe8-f70c-80a7-ad87-c676bf2d37c7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">請同仁彙整相關規格問題並提供給 <strong>詹健中 (Steve)</strong>，以便於與台積電的對接會議中提出。</li></ul><h3 id="3b99fbe8-f70c-8009-ae63-d70f9ded2d41" class="" dir="auto">5. 待辦事項</h3><p id="3b99fbe8-f70c-8065-a32f-d42594db3f37" class="" dir="auto">依據會議指令動作規範，整理如下：</p><table id="3b99fbe8-f70c-804e-b26e-c9654d48aa79" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b99fbe8-f70c-8069-a3dd-e44bc6d6d2dc" dir="ltr"><th id="_IEF" class="simple-table-header-color simple-table-header">任務內容</th><th id="ako\" class="simple-table-header-color simple-table-header">負責人</th><th id="XO@{" class="simple-table-header-color simple-table-header">期限</th><th id="n?B;" class="simple-table-header-color simple-table-header">狀態</th></tr></thead><tbody><tr id="3b99fbe8-f70c-8065-90db-fa144ca5c7dc" dir="ltr"><td id="_IEF" class=""><strong>AOI 設備韌體更新</strong></td><td id="ako\" class="">品保 PM</td><td id="XO@{" class="">已完成</td><td id="n?B;" class=""><strong>已結案 (解除列管)</strong></td></tr><tr id="3b99fbe8-f70c-8072-aafd-c8a76526b1d0" dir="ltr"><td id="_IEF" class=""><strong>回報設備停機保養後的後續穩定狀況</strong></td><td id="ako\" class="">產線主管</td><td id="XO@{" class="">下週會議</td><td id="n?B;" class=""><strong>待辦 (列管追蹤)</strong></td></tr></tbody></table><hr id="3b99fbe8-f70c-802d-8dc2-f2594743e7a9" dir="auto"/><p id="3b99fbe8-f70c-800e-8de5-dc8e07cf978f" class="" dir="auto"><strong>註記：</strong></p><ul id="3b99fbe8-f70c-8022-8dea-e60ab5995d01" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>SC/Steve</strong>：識別為三誠業服務科技股份有限公司教育長<strong>詹健中</strong>。</li></ul><ul id="3b99fbe8-f70c-80e6-bf0e-c614d9051799" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>2330</strong>：識別為客戶公司<strong>台積電 (TSMC)</strong>。</li></ul></div></details></div></div><p id="3b69fbe8-f70c-80d4-a5f8-e6127b4efe52" class="" dir="auto"><strong>💬 討論型（腦力激盪與溝通）</strong></p><div id="3b79fbe8-f70c-802b-8680-faa6df8ef7c2" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8026-983a-d1a51930fcc2" style="width:75%" class="column" data-notion-column-ratio="0.75" dir="auto"><pre id="3b69fbe8-f70c-807b-b363-d1b4d95ccdd1" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是一位專業會議記錄整理專員。這是一場「討論型會議」，目的在於激盪想法而非立即定案。請閱讀以下逐字稿，並運用「專有名詞資料庫」，整理成以下格式：
+
+1. 會議主題與日期
+2. 討論的核心問題
+3. 各方提出的觀點與論點（依發言者或立場分類，保留不同意見，不強行收斂成單一結論）
+4. 已達成初步共識的部分（若有）
+5. 尚待進一步討論或決定的開放問題
+6. 待辦事項（凡出現「列管追蹤」字樣的段落，請優先列為待辦事項）
+
+請使用繁體中文（台灣用語）。
+
+【以下為逐字稿全文（範例，請替換為你自己的逐字稿）】
+主持人：今天想跟大家腦力激盪一下，最近客戶反映我們的Email回覆語氣常常太生硬，有沒有人有想法可以怎麼改善？
+業務甲：我覺得問題可能出在我們都是先套用制式範本，語氣沒有依對象調整。像是2330那種比較重流程的客戶，跟一般中小型客戶，講話方式應該不一樣。
+業務乙：對，我也覺得可以先分類一下，客戶大概屬於哪一種溝通偏好，再決定用什麼語氣回覆。
+SC：這個想法不錯，不過也要考慮到我們人力有限，不可能每封信都重新想語氣，是不是可以先建立幾種常見情境的範本，讓大家套用就好？
+業務甲：那範本要怎麼決定？
+SC：我建議先從最常出現的幾種情境開始，比如婉拒、談判、催款這幾種，之後再慢慢擴充。
+主持人：好，這個部分我們先列管追蹤，下次會議再看看有沒有具體的範本可以先試跑看看，大家覺得呢？
+業務乙：可以，我覺得方向是對的。
+主持人：好，那今天先討論到這邊，謝謝大家踴躍發言。</code></pre></div><div id="3b79fbe8-f70c-80f7-afa3-d05463e4bad7" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><details id="3b99fbe8-f70c-80d7-be81-d90c6c6262aa" open="" class="toggle" dir="auto"><summary>這是一份根據您提供的逐字稿，並結合<strong>專有名詞資料庫</strong>整理而成的討論型會議紀錄：</summary><div class="indented"><h3 id="3b99fbe8-f70c-805d-8a91-cedd6f87cdde" class="" dir="auto">1. 會議主題與日期</h3><ul id="3b99fbe8-f70c-8047-9c83-cca6c95d4746" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>會議主題：</strong> Email 回覆語氣優化腦力激盪會議</li></ul><ul id="3b99fbe8-f70c-8019-98f4-f202f136cbd7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>日期：</strong> 2026年8月10日（參考資料庫更新日期）</li></ul><h3 id="3b99fbe8-f70c-805d-87d9-ed06670e2d27" class="" dir="auto">2. 討論的核心問題</h3><ul id="3b99fbe8-f70c-8089-815d-cae5dd2285f7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">如何改善客戶反映之 Email 回覆語氣生硬問題，並在有限的人力下，針對不同類型的客戶（如 <strong>2330/台積電</strong> 與一般中小企業）提供更具彈性且適切的溝通方式。</li></ul><h3 id="3b99fbe8-f70c-801f-8e91-d0d11b583811" class="" dir="auto">3. 各方提出的觀點與論點</h3><ul id="3b99fbe8-f70c-80e5-92a1-dc9d6e03e722" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>業務甲：</strong><ul id="3b99fbe8-f70c-801e-8319-f281df1b8682" class="bulleted-list" dir="auto"><li style="list-style-type:circle">認為問題在於過度套用制式範本，導致語氣未能依對象調整。</li></ul><ul id="3b99fbe8-f70c-80e6-8361-d4334caa7883" class="bulleted-list" dir="auto"><li style="list-style-type:circle">主張應區分客戶類型，例如針對 <strong>2330（台積電）</strong> 這類重流程的客戶與一般中小型客戶，應採用不同的講話方式。</li></ul></li></ul><ul id="3b99fbe8-f70c-80eb-a392-e4c5e898c4c7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>業務乙：</strong><ul id="3b99fbe8-f70c-80f1-b194-defb08a08eae" class="bulleted-list" dir="auto"><li style="list-style-type:circle">提出應先針對客戶的「溝通偏好」進行分類。</li></ul><ul id="3b99fbe8-f70c-801b-a4ad-da130b220b9d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">建議依據分類結果，再決定回覆時應採取的語氣。</li></ul></li></ul><ul id="3b99fbe8-f70c-80b8-b899-f32ec58b920a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>詹健中（SC/Steve）：</strong><ul id="3b99fbe8-f70c-80d4-abbd-f51b06ce923b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">提醒需考量公司人力有限，無法讓同仁針對每封信件重新構思語氣。</li></ul><ul id="3b99fbe8-f70c-809e-a976-e4dec9e3f7a7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">建議折衷方案：先針對「最常出現」的情境（如：婉拒、談判、催款）建立多樣化的語氣範本，讓同仁套用，之後再逐步擴充。</li></ul></li></ul><h3 id="3b99fbe8-f70c-8074-b0cb-da0b51924be1" class="" dir="auto">4. 已達成初步共識的部分</h3><ul id="3b99fbe8-f70c-802d-b524-c5fa4e1f7acc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">全體與會者認同改善回覆語氣的方向是正確的。</li></ul><ul id="3b99fbe8-f70c-80c3-b063-cef1a3ce2113" class="bulleted-list" dir="auto"><li style="list-style-type:disc">初步同意採取「建立情境範本」的方式，以平衡工作負荷與溝通品質。</li></ul><h3 id="3b99fbe8-f70c-80da-9f1d-fd8c704a0ab8" class="" dir="auto">5. 尚待進一步討論或決定的開放問題</h3><ul id="3b99fbe8-f70c-8026-bade-e06263315fc9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">針對「婉拒、談判、催款」等情境，具體的範本文字內容該如何優化？</li></ul><ul id="3b99fbe8-f70c-80fb-8815-e6cfe87d6863" class="bulleted-list" dir="auto"><li style="list-style-type:disc">客戶「溝通偏好」的分類標準應如何具體制定？</li></ul><h3 id="3b99fbe8-f70c-80fa-96ed-d50fe256181b" class="" dir="auto">6. 待辦事項</h3><p id="3b99fbe8-f70c-80db-bd34-c2ea8dfd4417" class="" dir="auto">依據會議指令動作規範，針對主持人要求之事項進行列管：</p><table id="3b99fbe8-f70c-80ae-b76c-d6c6a541021f" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b99fbe8-f70c-80a0-b775-e5cdbcddc149" dir="ltr"><th id="@:rz" class="simple-table-header-color simple-table-header">任務內容</th><th id="cY]T" class="simple-table-header-color simple-table-header">負責人</th><th id="VIOY" class="simple-table-header-color simple-table-header">期限</th><th id="PiV^" class="simple-table-header-color simple-table-header">狀態</th></tr></thead><tbody><tr id="3b99fbe8-f70c-80ae-b6c0-f5347c1d07fe" dir="ltr"><td id="@:rz" class=""><strong>彙整並整理具體情境範本（婉拒、談判、催款）供下次會議試跑評估</strong></td><td id="cY]T" class="">相關人員（待確認）</td><td id="VIOY" class="">下次會議</td><td id="PiV^" class=""><strong>待辦 (列管追蹤)</strong></td></tr></tbody></table><hr id="3b99fbe8-f70c-80c1-a549-d0aa13875140" dir="auto"/><p id="3b99fbe8-f70c-8003-b8a3-dfec4884bf29" class="" dir="auto"><strong>註記：</strong></p><ul id="3b99fbe8-f70c-809c-91c0-c72f368faab7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>SC/Steve</strong>：識別為三誠業服務科技股份有限公司教育長<strong>詹健中</strong>。</li></ul><ul id="3b99fbe8-f70c-8088-ac73-c912223bac00" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>2330</strong>：識別為客戶公司<strong>台積電 (TSMC)</strong>。</li></ul></div></details></div></div><p id="3b69fbe8-f70c-80e9-bac7-dc3259c6006e" class="" dir="auto"><strong>✅ 決策型（決議與投票會議）</strong></p><div id="3b79fbe8-f70c-802e-b485-c1725d817585" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80a0-b67d-d4bd7ba00ac9" style="width:75%" class="column" data-notion-column-ratio="0.75" dir="auto"><pre id="3b69fbe8-f70c-80e0-b6d5-d67c1313b8e5" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是一位專業會議記錄整理專員。這是一場「決策型會議」，目的在於做出正式決議。請閱讀以下逐字稿，並運用「專有名詞資料庫」，整理成以下格式：
+
+1. 會議主題與日期
+2. 待決議事項
+3. 討論摘要（簡述正反意見）
+4. 最終決議（含表決結果，若有投票請列出同意／反對／棄權人數）
+5. 待辦事項（格式：事項－負責人－期限；凡出現「列管追蹤」字樣的段落，請優先列為待辦事項）
+6. 尚待釐清的問題
+
+【專有名詞對照】（請依此列表校正逐字稿中可能的誤植）
+分類:代號｜標準名稱:2330｜別名:台積電｜英文:TSMC
+分類:指令｜標準名稱:列管追蹤｜動作:標記為待辦事項
+分類:指令｜標準名稱:解除列管｜動作:標記為已結案
+分類:人物｜標準名稱:詹健中｜別名:健中｜英文:Steve;SC
+
+請使用繁體中文（台灣用語），避免使用中國大陸慣用詞；若逐字稿中有涉及客戶機密之具體數字或合約條款，請先標示【機密】提醒我複核後再對外使用。
+
+【以下為逐字稿全文（範例，請替換為你自己的逐字稿）】
+主持人：今天主要要決議2330那邊提出的保固展延需求，先請業務窗口說明一下現況。
+業務主管：對，2330那邊上禮拜正式提出，希望我們針對這次採購的設備，免費延長半年保固，理由是他們今年會加開一條新產線，希望我們這邊多一點保障期。
+財務代表：這樣的話成本上大概會增加多少？
+業務主管：以目前的服務合約估算，大概是原本保固成本的15%左右，不算太高。
+SC：那如果我們答應，會不會變成之後其他客戶也比照辦理？
+業務主管：這個風險是有的，所以我建議可以用「簽年約送半年保固」的方式，而不是直接無條件答應，這樣比較不會變成先例。
+主持人：好，那我們現在針對「以簽年約交換半年保固」這個方案進行表決，同意的請舉手。
+（表決結果：同意4票，反對1票，棄權0票）
+主持人：好，通過。那這件事情列管追蹤，麻煩業務主管這週內跟2330那邊確認對方是否願意簽年約，下週會議前要有回覆。
+業務主管：了解，我這週會處理。
+主持人：好，那這個議題先到這邊，謝謝大家。</code></pre></div><div id="3b79fbe8-f70c-80c7-b57b-d99438579512" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><details id="3b99fbe8-f70c-8015-907a-d5f9a4812def" open="" class="toggle" dir="auto"><summary>這是一份根據您提供的逐字稿，並結合<strong>專有名詞資料庫</strong>所整理的決策型會議記錄：</summary><div class="indented"><h3 id="3b99fbe8-f70c-803c-824b-f82c6ea4b7d6" class="" dir="auto">1. 會議主題與日期</h3><ul id="3b99fbe8-f70c-805c-9d6b-f777c5f4b53d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>會議主題：</strong> <strong>2330 (台積電)</strong> 保固展延需求決議會議</li></ul><ul id="3b99fbe8-f70c-805e-8e3e-f56b8e0939fe" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>日期：</strong> 逐字稿未註明（參考資料庫更新日期為 2026 年 8 月 10 日）</li></ul><h3 id="3b99fbe8-f70c-8034-a189-f4acbd7753a7" class="" dir="auto">2. 待決議事項</h3><ul id="3b99fbe8-f70c-80d4-9c5d-cebbc048db40" class="bulleted-list" dir="auto"><li style="list-style-type:disc">是否同意 <strong>2330 (台積電)</strong> 針對本次採購設備所提出之「免費延長半年保固」需求。</li></ul><h3 id="3b99fbe8-f70c-8062-9549-c4ed52e720f6" class="" dir="auto">3. 討論摘要</h3><ul id="3b99fbe8-f70c-80ad-a4d5-fbdd7601d4f4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>正方意見/需求背景：</strong> <strong>2330 (台積電)</strong> 因今年將加開一條新產線，故要求增加保障期。業務主管評估此項服務成本約為原保固成本的 <strong>【機密】15%</strong>，認為負擔不算太高。</li></ul><ul id="3b99fbe8-f70c-8020-9107-d51d8d8fbd37" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>反方意見/風險考量：</strong> <strong>詹健中 (SC)</strong> 提出質疑，擔憂若無條件答應此需求，恐導致其他客戶比照辦理，形成不良先例。</li></ul><ul id="3b99fbe8-f70c-8015-8586-ffc3705241ce" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>折衷方案：</strong> 業務主管建議不採取無條件展延，改以「簽署年約」作為交換條件，以降低變成先例的風險。</li></ul><h3 id="3b99fbe8-f70c-8059-a02c-cdf4ed37bbba" class="" dir="auto">4. 最終決議</h3><ul id="3b99fbe8-f70c-80b3-91e0-f7167468b428" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>決議內容：</strong> 通過「以簽年約交換半年保固」方案。</li></ul><ul id="3b99fbe8-f70c-809e-ab1c-cf7be01c0db1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>表決結果：</strong> 同意 4 票，反對 1 票，棄權 0 票。</li></ul><h3 id="3b99fbe8-f70c-802b-a641-d44ec13ff53b" class="" dir="auto">5. 待辦事項</h3><p id="3b99fbe8-f70c-80fe-ba89-ef08eb41e847" class="" dir="auto">依照會議指令動作規範，針對主持人要求之事項進行列管：</p><table id="3b99fbe8-f70c-802a-ba91-cb4c6626742e" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b99fbe8-f70c-809e-969a-d5ba974b3e9a" dir="ltr"><th id="NQAZ" class="simple-table-header-color simple-table-header">事項</th><th id="WY|A" class="simple-table-header-color simple-table-header">負責人</th><th id="yQt&gt;" class="simple-table-header-color simple-table-header">期限</th><th id="ElWp" class="simple-table-header-color simple-table-header">狀態</th></tr></thead><tbody><tr id="3b99fbe8-f70c-80b7-9b4d-c5c76ac117ee" dir="ltr"><td id="NQAZ" class=""><strong>與 2330 (台積電) 確認簽署年約意願並回覆</strong></td><td id="WY|A" class="">業務主管</td><td id="yQt&gt;" class="">本週內（下次會議前）</td><td id="ElWp" class=""><strong>待辦 (列管追蹤)</strong></td></tr></tbody></table><h3 id="3b99fbe8-f70c-8032-999b-eb85a804190e" class="" dir="auto">6. 尚待釐清的問題</h3><ul id="3b99fbe8-f70c-80f2-b879-d995eabc9eae" class="bulleted-list" dir="auto"><li style="list-style-type:disc">若 <strong>2330 (台積電)</strong> 拒絕以簽署年約作為交換條件，是否有其他備案？</li></ul><ul id="3b99fbe8-f70c-80a7-b429-d69a514704fb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">針對「年約」的具體合約條款與保障範圍，是否需要律師或法務部門先行審核？</li></ul><hr id="3b99fbe8-f70c-80dc-bfc6-c606256b04c8" dir="auto"/><p id="3b99fbe8-f70c-8007-a07d-d100ac637ed0" class="" dir="auto"><strong>註記：</strong></p><ul id="3b99fbe8-f70c-80fa-8f15-e02162b88220" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>SC</strong> 識別為「三誠業服務科技股份有限公司」教育長<strong>詹健中</strong>。</li></ul><ul id="3b99fbe8-f70c-808c-a24a-d574e4515cb1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>2330</strong> 識別為客戶公司<strong>台積電 (TSMC)</strong>。</li></ul><ul id="3b99fbe8-f70c-806f-88e1-e3359bdabe91" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>列管追蹤</strong> 已依據指令動作標記為待辦事項。</li></ul></div></details></div></div><h3 id="3b69fbe8-f70c-8032-baa5-d1126af2cb36" class="" dir="auto">審核清單（適用全課程）</h3><p id="3b69fbe8-f70c-80fb-9d8b-c06dac48fbfc" class="" dir="auto">結構化摘要產出後，逐項確認：</p><ul id="3b69fbe8-f70c-80c7-9a8d-cd9fab0cd819" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><strong>事實正確性</strong>：數字、人名、<mark class="highlight-red" data-notion-highlight="red"><strong>決議</strong></mark>是否無誤（可比對逐字稿）</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80c3-ad85-d74683e62e44" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><strong>格式規範</strong>：是否符合公司會議紀錄範本（ 可提供 markdown 會議格式）</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80f9-b873-ea8a02472f20" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><strong>語氣適當</strong>：是否忠實反映會議氛圍，不過度美化或簡化</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-801e-a89b-e3ff416a296c" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><strong>機密保護</strong>：是否有不應外流的敏感內容需<strong><span style="border-bottom:0.05em solid">去識別化</span></strong></span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80f7-8c91-dadf2545b2c3" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><mark class="highlight-red" data-notion-highlight="red"><strong>行動明確：每項待辦是否標註負責人與期限（串接工作管理軟體）</strong></mark></span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80cd-bfc1-e8933efdf197" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked"><strong>用詞正確</strong>：是否使用台灣繁體中文慣用語，避免中國大陸用詞習慣混入</span><div class="indented"></div></li></ul><div id="3b79fbe8-f70c-8054-859e-d88860de859b" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8065-af79-e4ea9880adc9" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><blockquote id="3b69fbe8-f70c-8052-b753-c855582808b0" class="" dir="auto">📌 這份審核清單是本<strong>課程共用標準</strong>，後續 Email、報告、翻譯單元都會沿用這份清單複核，不再重複列出。<br/><mark class="highlight-red" data-notion-highlight="red"><strong>使用時可用不同的 AI 工具進行審核，避免球員兼裁判的情況發生</strong></mark><mark class="highlight-red" data-notion-highlight="red">。</mark></blockquote></div><div id="3b79fbe8-f70c-807f-addf-d5fe01b39c49" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-8029-89b0-c5dd1eda7fd1" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%209.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%209.png"><img style="width:908.2670288085938px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%209.png"/></a></figure></div></div><h3 id="3b69fbe8-f70c-80c1-8944-fa44dc5cd73d" class="" dir="auto">✅ 實作：上傳一份「真實」會議逐字稿</h3><ul id="3b69fbe8-f70c-807f-8c76-fb6e630b7ce9" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">判斷這場會議屬於哪一種類型</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-805f-b950-f65e9e4927de" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">套用對應提示詞範本產出結構化會議紀錄</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80e7-ab34-ef4dc8ab9f05" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">以六項審核清單自我檢核</span><div class="indented"></div></li></ul><h3 id="3b69fbe8-f70c-80e9-ade4-c2c577154a3c" class="" dir="auto">📓會議資料庫：收集、整理、儲存、分享與應用</h3><div id="3b69fbe8-f70c-80c7-81e5-e74cce58b4fb" class="column-list" data-notion-column-list="" dir="auto"><div id="3b69fbe8-f70c-809e-901c-cf42272e4e1b" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><pre id="3b69fbe8-f70c-801d-8355-c42bd027e47a" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph TD
+    A(收集（Capture）) --&gt; B(整理（Organize）)
+    B --&gt; C(儲存（Store）)
+    C --&gt; D(分享（Share）)
+    D --&gt; E(應用（Apply）)</code></pre></div><div id="3b69fbe8-f70c-80bb-868c-e8dcc65bab56" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ol type="1" id="3b69fbe8-f70c-8004-b9de-ec17c439f906" class="numbered-list" start="1" dir="auto"><li><strong>收集（Capture）</strong>：會議前建立 Notion 頁面並將<strong>狀態設為【待開會】</strong>，開會時利用<strong>錄音工具進行全程錄音</strong>，自動生成精準的會議記錄。</li></ol><ol type="1" id="3b69fbe8-f70c-8092-baa8-eab94cf95e6b" class="numbered-list" start="2" dir="auto"><li><strong>整理（Organize）</strong>：會議結束後，運用 AI 生成附帶【待辦清單】的會議記錄貼進 Notion，可利用 <strong><span style="border-bottom:0.05em solid">『@』標記日期、人員與頁面</span></strong>，再將<strong>狀態切換為【追蹤】</strong>。</li></ol><ol type="1" id="3b69fbe8-f70c-80ad-884d-ee69038ddc22" class="numbered-list" start="3" dir="auto"><li><strong>儲存（Store）</strong>：在任務執行期間，利用 Notion <strong>維持在【追蹤】狀態</strong>來監控未完事項；待所有工作項目皆徹底完成後，再將<strong>狀態變更為【歸檔】</strong>。 </li></ol><ol type="1" id="3b69fbe8-f70c-8065-8f57-c1d761db385f" class="numbered-list" start="4" dir="auto"><li><strong>分享（Share）</strong>：當「會議狀態」變更為【追蹤】或【歸檔】時，人工或自動將 Notion 頁面連結貼至通訊軟體，讓團隊能以最快速度<strong><span style="border-bottom:0.05em solid">同步最新共識</span></strong>。</li></ol><ol type="1" id="3b69fbe8-f70c-8031-9c79-d79b99f84483" class="numbered-list" start="5" dir="auto"><li><strong>應用（Apply）</strong>：日常工作時，<strong>運用 AI 讀取【追蹤】與【歸檔】的歷史紀錄</strong>，直接進行跨會議的決策問答、自動檢視專案卡關原因，將過去的結論轉化為即時的行動指南。</li></ol></div></div><div id="3b69fbe8-f70c-80a6-a9b8-e9bf7b3e08a4" class="collection-content" dir="ltr"><h4 class="collection-title">2026會議資料庫</h4><div class="collection-content-wrapper"><table class="collection-content"><colgroup><col style="width:17.674418604651162%"/><col style="width:11.627906976744185%"/><col style="width:11.627906976744185%"/><col style="width:11.627906976744185%"/><col style="width:47.44186046511628%"/></colgroup><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>會議名稱</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/calendar_gray.svg" style="width:14px;height:14px;display:block"/></span>會議日期</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-circle-down_gray.svg" style="width:14px;height:14px;display:block"/></span>分類標籤</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>會議狀態</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>逐字稿</th></tr></thead><tbody><tr id="3b79fbe8-f70c-8082-a511-df8881ae9d8f"><td class="cell-title"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/2026%E6%9C%83%E8%AD%B0%E8%B3%87%E6%96%99%E5%BA%AB/%E6%B1%BA%E7%AD%96%E5%9E%8B%E6%9C%83%E8%AD%B0%203b79fbe8f70c8082a511df8881ae9d8f.html" data-notion-page-id="3b79fbe8-f70c-8082-a511-df8881ae9d8f" data-notion-space-id="a2e4dbc3-c64e-46d6-96c0-9706ee75b2a4">決策型會議</a></td><td class="cell-bjCK"><time datetime="2026-08-11">2026/08/11</time></td><td class="cell-ekEb"><span class="selected-value select-value-color-default">跨部門協調</span></td><td class="cell-ic\Z"><span class="status-value"><div class="status-dot"></div>待開會</span></td><td class="cell-\t&lt;H">主持人：今天主要要決議2330那邊提出的保固展延需求，先請業務窗口說明一下現況。<br/>業務主管：對，2330那邊上禮拜正式提出，希望我們針對這次採購的設備，免費延長半年保固，理由是他們今年會加開一條新產線，希望我們這邊多一點保障期。<br/>財務代表：這樣的話成本上大概會增加多少？<br/>業務主管：以目前的服務合約估算，大概是原本保固成本的15%左右，不算太高。<br/>SC：那如果我們答應，會不會變成之後其他客戶也比照辦理？<br/>業務主管：這個風險是有的，所以我建議可以用「簽年約送半年保固」的方式，而不是直接無條件答應，這樣比較不會變成先例。<br/>主持人：好，那我們現在針對「以簽年約交換半年保固」這個方案進行表決，同意的請舉手。<br/>（表決結果：同意4票，反對1票，棄權0票）<br/>主持人：好，通過。那這件事情列管追蹤，麻煩業務主管這週內跟2330那邊確認對方是否願意簽年約，下週會議前要有回覆。<br/>業務主管：了解，我這週會處理。<br/>主持人：好，那這個議題先到這邊，謝謝大家。</td></tr><tr id="3b79fbe8-f70c-8040-b448-c04445be37ca"><td class="cell-title"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/2026%E6%9C%83%E8%AD%B0%E8%B3%87%E6%96%99%E5%BA%AB/%E8%A8%8E%E8%AB%96%E5%9E%8B%E6%9C%83%E8%AD%B0%203b79fbe8f70c8040b448c04445be37ca.html" data-notion-page-id="3b79fbe8-f70c-8040-b448-c04445be37ca" data-notion-space-id="a2e4dbc3-c64e-46d6-96c0-9706ee75b2a4">討論型會議</a></td><td class="cell-bjCK"><time datetime="2026-08-10">2026/08/10</time></td><td class="cell-ekEb"><span class="selected-value select-value-color-brown">客戶會議</span></td><td class="cell-ic\Z"><span class="status-value select-value-color-blue"><div class="status-dot status-dot-color-blue"></div>追蹤</span></td><td class="cell-\t&lt;H">主持人：今天想跟大家腦力激盪一下，最近客戶反映我們的Email回覆語氣常常太生硬，有沒有人有想法可以怎麼改善？<br/>業務甲：我覺得問題可能出在我們都是先套用制式範本，語氣沒有依對象調整。像是2330那種比較重流程的客戶，跟一般中小型客戶，講話方式應該不一樣。<br/>業務乙：對，我也覺得可以先分類一下，客戶大概屬於哪一種溝通偏好，再決定用什麼語氣回覆。<br/>SC：這個想法不錯，不過也要考慮到我們人力有限，不可能每封信都重新想語氣，是不是可以先建立幾種常見情境的範本，讓大家套用就好？<br/>業務甲：那範本要怎麼決定？<br/>SC：我建議先從最常出現的幾種情境開始，比如婉拒、談判、催款這幾種，之後再慢慢擴充。<br/>主持人：好，這個部分我們先列管追蹤，下次會議再看看有沒有具體的範本可以先試跑看看，大家覺得呢？<br/>業務乙：可以，我覺得方向是對的。<br/>主持人：好，那今天先討論到這邊，謝謝大家踴躍發言。</td></tr><tr id="3b69fbe8-f70c-8022-a2dd-e4821d897e28"><td class="cell-title"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/2026%E6%9C%83%E8%AD%B0%E8%B3%87%E6%96%99%E5%BA%AB/%E8%B3%87%E8%A8%8A%E5%88%86%E4%BA%AB%E5%9E%8B%E6%9C%83%E8%AD%B0%203b69fbe8f70c8022a2dde4821d897e28.html" data-notion-page-id="3b69fbe8-f70c-8022-a2dd-e4821d897e28" data-notion-space-id="a2e4dbc3-c64e-46d6-96c0-9706ee75b2a4">資訊分享型會議</a></td><td class="cell-bjCK"><time datetime="2026-08-07">2026/08/07</time></td><td class="cell-ekEb"><span class="selected-value select-value-color-gray">部門週會</span></td><td class="cell-ic\Z"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>歸檔</span></td><td class="cell-\t&lt;H">主持人：好，我們開始今天的產線週報分享。上次列管的那台AOI設備韌體更新，處理得怎麼樣了？<br/>品保PM：已經處理完成了，上週五就更新完畢，目前運作正常。<br/>主持人：好，那這項可以解除列管了。接下來先請品保這邊跟我們同步一下這週的檢測狀況。<br/>品保PM：好，這週AOI整體判定的誤判率大概維持在2%左右，比上週稍微好一點。FCT測試的部分，通過率是98.5%，跟目標值差不多。<br/>主持人：了解，那OEE這邊呢？<br/>產線主管：這週OEE大概是82%，比上週低了三個百分點，主要是因為週三那台設備有臨時停機保養。<br/>主持人：好，這個我們列管追蹤一下，麻煩產線主管下週回報一下那台設備後續穩定的狀況。<br/>產線主管：沒問題。<br/>主持人：那Steve這邊有沒有要跟大家同步的？<br/>SC：有，我這邊主要是跟大家說一下，這個月開始我們會固定每兩週跟2330那邊的窗口做一次技術對接會議，如果大家有規格上的問題可以先彙整給我。<br/>主持人：好，那今天先同步到這邊，謝謝大家。</td></tr></tbody></table></div><br/><br/></div><hr id="3b69fbe8-f70c-80a9-91ce-d6ad39d464ea" dir="auto"/><h2 id="3b79fbe8-f70c-80b9-a08e-fcfdae80f009" class="" dir="auto">🎨 單元三：寫作風格設定與個人化 AI 技能</h2><div id="3b79fbe8-f70c-8043-bf0f-ff919d6402b7" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8015-9aa4-c71b52994ea8" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-809d-b2c2-dc9d4ebc4fe2" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit2.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit2.png"><img style="width:623.99853515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit2.png"/></a></figure></div><div id="3b79fbe8-f70c-8045-9d6b-cc7a6da1e1ff" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b79fbe8-f70c-80d3-af8c-cc736a4048ba" class="" dir="auto">情境故事：小壯的困擾</h3><p id="3b79fbe8-f70c-8091-8527-d1639cf421d9" class="" dir="auto">小壯發現同一份 AI 產出的信件，<span style="border-bottom:0.05em solid">主管覺得太生硬、客戶覺得太隨便，怎麼一次滿足不同對象？</span>大壯建議：「先幫 AI 建立你的『<mark class="highlight-red" data-notion-highlight="red"><strong>語氣風格提示詞</strong></mark>』。」</p><blockquote id="3b79fbe8-f70c-80fa-9042-e3760eb8a22b" class="" dir="auto">✏️ <strong>現況回饋</strong>：寫下你目前調整 AI 產出語氣的做法與花費時間。</blockquote><hr id="3b89fbe8-f70c-80d4-8317-ee0f7f117c42" dir="auto"/></div></div><h3 id="3b79fbe8-f70c-8055-b9c5-f502f55c57e4" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">語氣與風格：先搞懂差異</mark></h3><p id="3b79fbe8-f70c-8063-bc6f-eccb8a1f9978" class="" dir="auto">要調校 AI 的產出，得先分清楚兩個常被混用的概念：</p><ul id="3b79fbe8-f70c-8063-91db-eee9a2732476" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>語氣（Tone）</strong>：隨情境而變動的「表達方式」——你選擇用什麼<strong><span style="border-bottom:0.05em solid">態度</span></strong>說話，會因對象、場合、目的而切換。同一個人，對客戶可能正式、對同事可能輕鬆、道歉時委婉、催款時堅定。</li></ul><ul id="3b79fbe8-f70c-80fb-b30b-dc583be0e9dc" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>風格（Style）</strong>：相對穩定、不太隨情境改變的「個人<strong><span style="border-bottom:0.05em solid">書寫慣性</span></strong>」——例如慣用的開場方式、句子長短、<strong><span style="border-bottom:0.05em solid">論述順序</span></strong>、口頭禪、<strong><span style="border-bottom:0.05em solid">標點使用習慣</span></strong>。</li></ul><blockquote id="3b79fbe8-f70c-8064-854e-de25f33fa28a" class="" dir="auto">💡 比喻：<strong>風格</strong>像一個人一貫的「說話腔調」，<strong>語氣</strong>則是「今天用什麼表情說話」。同一個腔調（風格），可以用不同表情（語氣）說出正式或委婉的話。</blockquote><p id="3b79fbe8-f70c-809e-b6ab-d4b02fe08f78" class="" dir="auto">這也是為什麼只教 AI「語氣」不夠——它還得知道你「風格」上的固定慣性，兩者合在一起，才能真正模仿你。</p><hr id="3b89fbe8-f70c-80d8-9356-e3257966a301" dir="auto"/><h3 id="3b79fbe8-f70c-804d-a45f-fe2aba56b448" class="" dir="auto">語氣「設定」的方式｜<a href="https://chatgpt.com/g/g-p-6a76f7bdf1ec81918c306db09ca9e56b-2026-speech/c/6a785a1a-8a40-83ee-9518-cd2078bfed0d">ChatGPT</a></h3><h4 id="3b79fbe8-f70c-8037-b5b8-d50c4263c674" class="" dir="auto"><strong>System Prompt／Custom Instructions</strong></h4><div id="3b79fbe8-f70c-807a-bc83-e988d0dba71b" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80d5-b2f8-f68917539af0" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ul id="3b79fbe8-f70c-801a-b90f-cc5be1d4160b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">範例A：<strong><span style="border-bottom:0.05em solid">專業親切</span></strong>，如醫師解釋病情<pre id="3b79fbe8-f70c-8058-a5e0-edf7c480cb26" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請以專業但親切的語氣回覆，如同醫師向病患解釋病情——用詞精確但避免術語堆砌，並主動確認對方是否理解。
+
+什麼是「GAP 框架：Goal、Audience、Purpose」？</code></pre><figure id="3b79fbe8-f70c-80f1-b553-fc0e3f88ed87" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2010.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2010.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2010.png"/></a></figure><p id="3b89fbe8-f70c-808e-bac9-c66ca50d55e6" class="" dir="auto">
+</p></li></ul></div><div id="3b79fbe8-f70c-806b-ae39-febbc81215b6" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ul id="3b79fbe8-f70c-809b-bc6b-e3ee530bbe6e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">範例B：<strong><span style="border-bottom:0.05em solid">嚴謹正式</span></strong>，如律師撰寫函文<pre id="3b79fbe8-f70c-802e-8c20-f723e4386d22" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請以嚴謹正式的語氣撰寫，如同律師撰寫正式函文——用詞精準、避免情緒性字眼、明確引用依據。
+
+什麼是「PSB 框架：Problem、Solution、Benefit」？</code></pre><figure id="3b79fbe8-f70c-8086-98e5-eed17113f2ed" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2011.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2011.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2011.png"/></a></figure></li></ul></div></div><p id="3b79fbe8-f70c-80dd-b078-e5b87fb646f8" class="" dir="auto">技能指令「範例」：</p><pre id="3b79fbe8-f70c-80e0-b45b-fde07fb6eadc" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是我專屬的商務書信寫手。請一律依照以下風格撰寫：
+1. 開頭不用「敬啟者」等制式問候，直接切入主題。
+2. 句子偏短，每段不超過3句。
+3. 結尾一律附上一個明確的下一步行動。
+4. 避免使用「基本上」、「其實」、「至關重要」等口頭禪。</code></pre><h4 id="3b79fbe8-f70c-8038-bd3a-f94c7558afb4" class="" dir="auto"><strong>語氣風格提示詞（Prompt）</strong></h4><blockquote id="3b79fbe8-f70c-802a-baba-cd929d3baaef" class="" dir="auto">📌 統一命名：課程中不論是分析語氣或風格，經整理成可重複套用的個人化設定，稱為「<strong><span style="border-bottom:0.05em solid">語氣風格提示詞</span></strong><strong>（Prompt）</strong>」。</blockquote><p id="3b79fbe8-f70c-8045-83eb-d273eed1d89e" class="" dir="auto">「語氣風格提示詞（Prompt）」是一份 <mark class="highlight-red" data-notion-highlight="red"><strong>Markdown</strong></mark> 格式的文件，同時涵蓋「風格特徵」（固定不變的部分）與「語氣調節」（依情境切換的部分），格式如下：</p><pre id="3b79fbe8-f70c-80dc-887d-f9768111d4eb" class="code code-wrap" data-notion-code-syntax="markdown"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all"># 語氣風格提示詞（Prompt）— [姓名／角色]
+
+## 風格特徵（相對穩定，不隨情境改變）
+- 慣用開頭方式：
+- 句子長短偏好：
+- 論述順序邏輯：
+- 慣用詞彙／口頭禪（5–10個）：
+- 標點與排版習慣：
+- 寫作禁區（應避免的句型或用詞）：
+
+## 語氣調節（依情境切換）
+- 預設語氣：
+- 正式情境時：
+- 委婉情境時：
+- 堅定／談判情境時：
+- 親切／關係經營情境時：
+
+## 使用說明
+之後撰寫任何內容時，請以上方「風格特徵」為固定基礎，並依當下情境從「語氣調節」中選擇合適的語氣代入。</code></pre><p id="3b79fbe8-f70c-80c5-976b-fa93c1a5b452" class="" dir="auto"><strong>產出語氣風格提示詞（Prompt）的分析提示詞（Prompt）｜</strong><strong><a href="https://chatgpt.com/g/g-p-6a76f7bdf1ec81918c306db09ca9e56b-2026-speech/c/6a7966b6-b95c-83ee-81d3-f6dc7e0cef79">ChatGPT</a></strong></p><pre id="3b79fbe8-f70c-80ad-9874-e77e00c88a0d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請分析我提供的文章內容（或我們過去的對話紀錄），先分別說明我在這些內容中展現的「風格」（不隨情境改變的書寫慣性）與「語氣」（隨情境切換的表達方式）各是什麼，再依照下方 Markdown 格式，幫我整理成一份「語氣風格提示詞（Prompt）」：
+
+# 語氣風格提示詞（Prompt）— [依內容判斷角色名稱]
+
+## 風格特徵（相對穩定，不隨情境改變）
+- 慣用開頭方式：
+- 句子長短偏好：
+- 論述順序邏輯：
+- 慣用詞彙／口頭禪（5–10個）：
+- 標點與排版習慣：
+- 寫作禁區（應避免的句型或用詞）：
+
+## 語氣調節（依情境切換）
+- 預設語氣：
+- 正式情境時：
+- 委婉情境時：
+- 堅定／談判情境時：
+- 親切／關係經營情境時：
+
+## 使用說明
+之後我請你撰寫任何內容時，請以上方「風格特徵」為固定基礎，並依當下情境從「語氣調節」中選擇合適的語氣代入。
+
+【以下貼上我的文章或對話紀錄】</code></pre><h4 id="3b79fbe8-f70c-8088-9106-d76c93929cd5" class="" dir="auto"><strong>Claude </strong><mark class="highlight-red" data-notion-highlight="red">Skills</mark><strong> 設定（</strong><strong><a href="https://www.bnext.com.tw/article/90870/claude-skills-guidebook">延伸閱讀</a></strong><strong>）</strong></h4><ul id="3b79fbe8-f70c-80f0-932f-f76eefea6874" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><mark class="highlight-red" data-notion-highlight="red"><strong>Write skill instructions</strong></mark><ul id="3b79fbe8-f70c-80ed-8c31-eb097e98e13f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Claude → Settings<figure id="3b79fbe8-f70c-809e-b540-da4808039410" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2012.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2012.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2012.png"/></a></figure></li></ul><ul id="3b79fbe8-f70c-80e3-96b0-ff5c822a058f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Skills → Add → <strong>Write skill instructions</strong><figure id="3b79fbe8-f70c-80b9-84d8-f3a783193cb2" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2013.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2013.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2013.png"/></a></figure></li></ul><ul id="3b79fbe8-f70c-8089-bca0-e78c9f4c4b36" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Write skill instructions → <strong>Skill name、Desciption、Instructions</strong><figure id="3b79fbe8-f70c-80a1-b338-fa1b75f433cb" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2014.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2014.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2014.png"/></a></figure></li></ul><ul id="3b79fbe8-f70c-80db-af64-e64d6b764e80" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Instruction → 參考 learn.md 使用 Tone 段落描述「語氣」<figure id="3b79fbe8-f70c-80b0-9f84-d35e0a8d20b0" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2015.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2015.png"><img style="width:2050px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2015.png"/></a></figure></li></ul></li></ul><ul id="3b79fbe8-f70c-80c6-895e-dd66dcdc6a2e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><mark class="highlight-red" data-notion-highlight="red"><strong>Create with Claude</strong></mark><ul id="3b79fbe8-f70c-80e1-942f-eeaca8660e8b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Claude → ＋ → Skills → skill-creator<figure id="3b79fbe8-f70c-80c9-bf28-e375efe95b93" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2016.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2016.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2016.png"/></a></figure></li></ul><details id="3b79fbe8-f70c-80a1-b0c3-e2f9457a4d5b" open="" class="toggle" dir="auto"><summary><a href="https://claude.ai/chat/925b9c90-70f9-4c03-8bfb-5e996f393ac8">實際案例</a>（讀取外部 notion 輔導紀錄資料庫，制定顧問輔導紀錄寫作語氣與風格）</summary><div class="indented"><figure id="3b79fbe8-f70c-80d7-a2dc-dfa4e491078f" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2017.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2017.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2017.png"/></a></figure><figure id="3b79fbe8-f70c-80c4-bd42-d501e0be3c5d" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2018.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2018.png"><img style="width:879.0269775390625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2018.png"/></a></figure><figure id="3b79fbe8-f70c-804a-b336-ed1af2b30bd4" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2019.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2019.png"><img style="width:955.007080078125px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2019.png"/></a></figure><figure id="3b79fbe8-f70c-80bc-8ed4-d6c64f7c29a3" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2020.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2020.png"><img style="width:841.0440063476562px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2020.png"/></a></figure><figure id="3b79fbe8-f70c-8068-932f-fd1a3dbca0dc" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2021.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2021.png"><img style="width:955.007080078125px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2021.png"/></a></figure></div></details><details id="3b79fbe8-f70c-8074-8e0a-d5a6482c6316" open="" class="toggle" dir="auto"><summary>輸入「<mark class="highlight-red" data-notion-highlight="red"><strong>/skill-creator</strong></mark>」將對話內容封裝製作為 Skill</summary><div class="indented"><figure id="3b79fbe8-f70c-8080-9669-fdec41d1d75c" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2022.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2022.png"><img style="width:879.0269775390625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2022.png"/></a></figure><figure id="3b89fbe8-f70c-80a4-a1e3-e0ec168606ca" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2023.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2023.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2023.png"/></a></figure></div></details></li></ul><details id="3b89fbe8-f70c-807a-ac2c-d1c384ff66d5" open="" class="toggle" dir="auto"><summary>Gemini’s Gems</summary><div class="indented"><div id="3b89fbe8-f70c-80a4-aa6b-efc34b5d0fd7" class="column-list" data-notion-column-list="" dir="auto"><div id="3b89fbe8-f70c-800a-b831-c744c4df99d8" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b89fbe8-f70c-807f-9b56-e793cc87a9f6" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2024.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2024.png"><img style="width:917.0170288085938px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2024.png"/></a></figure></div><div id="3b89fbe8-f70c-806c-b446-e3d8f5a05a49" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b89fbe8-f70c-806b-9691-d7fb3f5120c2" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2025.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2025.png"><img style="width:427.507080078125px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2025.png"/></a></figure></div></div></div></details><aside class="block-color-yellow_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="yellow_background" style="white-space:pre-wrap;display:flex" id="3b79fbe8-f70c-801c-9aae-c4126c4e85ec" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3b79fbe8-f70c-80f5-bbfa-c33c3a97bbbb" class="" dir="auto">Skills／Gems：把流程封裝成技能</h3><ul id="3b79fbe8-f70c-80e2-96aa-d899868541f9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>定義</strong>：一組可重複使用的提示詞與資源（SOP），通常包含一份 <code>SKILL.md</code> 說明文件</li></ul><ul id="3b79fbe8-f70c-800c-afd7-c3d6fce150e3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>建立途徑</strong>：對話中直接下令建立／使用平台 Skills 編輯器／上傳現成 Markdown 檔案</li></ul><ul id="3b79fbe8-f70c-806c-b693-e0ba9a9e0d24" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>呼叫方式</strong>：用<code>「/」</code>指定特定技能，或讓系統依任務自動觸發</li></ul></div></aside><h3 id="3b79fbe8-f70c-8038-8ef9-faacef7bd90c" class="" dir="auto">✅ 實作：建立你的第一份語氣風格提示詞（Prompt）或 Skill</h3><ul id="3b79fbe8-f70c-8008-a835-ef304e1d5674" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">上傳一至兩篇自己過去撰寫的文件（或過往對話紀錄）</span><div class="indented"></div></li></ul><ul id="3b79fbe8-f70c-80cc-bf0d-d55c3e6460e4" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">套用上方「分析提示詞（Prompt）」產出你的語氣風格提示詞（Prompt）</span><div class="indented"></div></li></ul><ul id="3b79fbe8-f70c-8063-ade8-e676c6768646" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">或封裝一項高頻任務為 Skill 雛形</span><div class="indented"></div></li></ul><h3 id="3b79fbe8-f70c-8049-b631-cc1709a9b5e9" class="" dir="auto">🎓 進階實作：語氣風格訓練循環｜<a href="https://chatgpt.com/g/g-p-6a76f7bdf1ec81918c306db09ca9e56b-2026-speech/c/6a788233-32c8-83ee-9240-8e02fec73a0b">ChatGPT</a></h3><div id="3b79fbe8-f70c-8032-ab36-d90f049243f2" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8059-9eef-c91daa5ac4eb" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="3b79fbe8-f70c-80ac-a650-d12578d3479e" class="" dir="auto">多數人的第一版語氣風格提示詞（Prompt）不會一次就準。就像訓練一樣，透過「實測 → 評分 → 更新」不斷校準，才會越用越像你。</p><p id="3b79fbe8-f70c-8052-a1fd-c4834dc8211a" class="" dir="auto">
+</p></div><div id="3b79fbe8-f70c-80f2-a081-e87bd85629f4" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><pre id="3b79fbe8-f70c-80ad-843e-d52da3d6d489" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph TD
+    A[&quot;1. 使用者提供語氣風格提示詞&quot;] --&gt; B[&quot;2. 使用者提供 Email 或 LINE 對話內容，作為訓練題目&quot;]
+    B --&gt; C[&quot;3. AI 依據語氣風格提示詞生成回覆內容&quot;]
+    C --&gt; D[&quot;4. 使用者依據李克特五點量表評分&quot;]
+    D --&gt; E{&quot;評分 3 分以下？&quot;}
+    E --&gt;|是| F[&quot;5. 使用者回饋修正意見並更新語氣風格提示詞&quot;]
+    F --&gt;|6. 重複步驟2| B
+    E --&gt;|否| B</code></pre></div></div><p id="3b79fbe8-f70c-80da-b971-d6ee255af2da" class="" dir="auto"><strong>步驟</strong></p><div id="3b79fbe8-f70c-8037-a187-dbc2a7e5c525" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8015-b87c-c683b065f6dc" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ol type="1" id="3b79fbe8-f70c-80be-b8b3-ff577767abac" class="numbered-list" start="1" dir="auto"><li>使用者提供「語氣風格提示詞（Prompt）」<details id="3b79fbe8-f70c-809b-88f6-db8fdc81f17e" open="" class="toggle" dir="auto"><summary><strong>訓練提示詞</strong></summary><div class="indented"><pre id="3b79fbe8-f70c-8089-8565-eb6701b8f9d8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all"># 角色
+你是一位「AI 語氣風格訓練教練」，負責協助使用者測試、評估與優化「語氣風格提示詞」。
+
+你的任務不是直接替使用者完成大量內容，而是透過實際案例反覆測試，協助使用者逐步建立一套穩定、可重複使用的語氣風格提示詞。
+
+# 核心訓練流程
+
+請依照以下循環執行：
+
+【Step 1｜建立語氣風格提示詞】
+請要求使用者提供目前使用的「語氣風格提示詞」。
+
+如果使用者尚未提供，請先詢問：
+
+「請提供目前希望 AI 遵循的語氣風格提示詞。」
+
+收到後，請先分析該提示詞，包括：
+1. 語氣
+2. 用詞
+3. 句型
+4. 情緒程度
+5. 正式程度
+6. 對象關係
+7. 表達習慣
+8. 其他可辨識的風格特徵
+
+並指出目前提示詞是否具有足夠的可執行性。
+
+---
+
+【Step 2｜提供訓練題目】
+
+請要求使用者提供一段實際的 Email、LINE 對話、Messenger 對話或其他商務溝通內容，作為測試題目。
+
+例如：
+
+「請提供一段 Email 或 LINE 對話內容，作為本次語氣風格測試題目。」
+
+使用者提供內容後，不要自行修改原始內容。
+
+---
+
+【Step 3｜依據語氣風格生成回覆】
+
+請嚴格依據使用者提供的「語氣風格提示詞」，針對測試題目產生適當回覆。
+
+生成內容時：
+
+1. 不得自行加入未被要求的語氣。
+2. 不得刻意追求華麗文字。
+3. 優先維持自然、真實、可直接使用的溝通方式。
+4. 必須讓回覆符合原始情境。
+5. 必須盡可能體現目前的語氣風格提示詞。
+
+輸出格式：
+
+【AI 產生的回覆】
+（完整回覆內容）
+
+【本次使用的語氣特徵】
+- 語氣：
+- 正式程度：
+- 情緒程度：
+- 用詞特徵：
+- 句型特徵：
+- 其他特徵：
+
+完成後，請要求使用者進行評分。
+
+---
+
+【Step 4｜李克特五點量表評分】
+
+請使用以下李克特五點量表：
+
+5 分：非常符合期待，幾乎就是希望呈現的語氣
+4 分：大致符合，只有少量需要調整
+3 分：普通，可以接受，但仍有明顯改善空間
+2 分：不太符合，需要進行明顯修正
+1 分：完全不符合，需要重新調整語氣風格
+
+請詢問：
+
+「請為這次回覆評分，1～5 分是多少？」
+
+並要求使用者說明原因。
+
+---
+
+【Step 5｜判斷是否需要修正】
+
+如果使用者評分為 4～5 分：
+
+代表目前語氣風格提示詞基本有效。
+
+請回覆：
+
+「本次評分達到可接受標準，暫時不需要修改語氣風格提示詞。」
+
+接著進入下一輪測試，請使用者提供新的 Email 或 LINE 題目。
+
+如果使用者評分為 1～3 分：
+
+代表目前語氣風格提示詞仍不足以穩定產生符合期待的內容。
+
+請進行以下分析：
+
+1. 找出 AI 回覆與使用者期待之間的差異。
+2. 分析造成差異的原因。
+3. 判斷問題來自：
+   - 語氣描述不明確
+   - 用詞描述不足
+   - 正式程度不足或過高
+   - 情緒程度不符合
+   - 句型描述不足
+   - 對象關係未定義
+   - 回覆長度未定義
+   - 商務情境未定義
+   - 其他原因
+
+接著詢問：
+
+「請提供希望修改的方向或具體意見。」
+
+---
+
+【Step 6｜更新語氣風格提示詞】
+
+根據使用者的評分與回饋，修改原本的「語氣風格提示詞」。
+
+修改時必須遵守：
+
+1. 保留原本有效的內容。
+2. 只針對使用者指出的問題進行修正。
+3. 將模糊的形容詞轉換為 AI 可以執行的具體規則。
+4. 避免加入與使用者需求無關的規則。
+5. 優先使用「可觀察、可執行、可驗證」的描述。
+6. 不得因單一案例而過度修改整體風格。
+7. 如果使用者的回饋與原提示詞矛盾，應指出矛盾之處。
+
+請輸出：
+
+【原語氣風格提示詞】
+（原內容）
+
+【本次發現的問題】
+（具體問題）
+
+【修正原則】
+（說明如何修正）
+
+【更新後語氣風格提示詞】
+（完整的新版本）
+
+【本次修改重點】
+- 修改：
+- 新增：
+- 刪除：
+- 保留：
+
+---
+
+【Step 7｜進入下一輪測試】
+
+更新提示詞後，不要停止訓練。
+
+請要求使用者提供新的 Email 或 LINE 對話內容，重新進行測試。
+
+新的測試應盡可能使用不同情境，例如：
+
+- 一般詢問
+- 客戶抱怨
+- 拒絕要求
+- 商務邀約
+- 工作交辦
+- 催促進度
+- 道歉
+- 感謝
+- 提醒
+- 談判
+- 敏感或衝突情境
+
+不要只使用與上一輪高度相似的題目。
+
+---
+
+# 訓練循環規則
+
+請持續執行：
+
+語氣風格提示詞
+↓
+實際溝通題目
+↓
+AI 產生回覆
+↓
+使用者評分
+↓
+判斷分數
+↓
+1～3 分 → 蒐集回饋 → 修正提示詞 → 下一輪
+4～5 分 → 保留提示詞 → 下一輪
+
+不要因為一次得到 4～5 分就宣稱語氣風格已經完全訓練完成。
+
+只有在多次不同情境測試中都能穩定取得 4～5 分時，才能判斷語氣風格提示詞具有較高穩定性。
+
+# 訓練紀錄
+
+每完成一輪測試，請記錄：
+
+【第 N 輪】
+測試情境：
+使用者評分：
+主要問題：
+使用者回饋：
+本輪修改：
+提示詞版本：
+
+如果已經進行多輪測試，請在適當時機提供：
+
+【語氣風格訓練摘要】
+- 測試輪數：
+- 平均分數：
+- 最高分：
+- 最低分：
+- 最常出現的問題：
+- 已確認的語氣特徵：
+- 尚未穩定的語氣特徵：
+- 建議繼續測試的情境：
+
+# 重要原則
+
+本訓練的目的，是「逐步建立可重複使用的語氣風格提示詞」，而不是讓 AI 記住某一段特定回覆。
+
+因此，每一次修改都必須回到「語氣規則」本身，而不是只修改某一句答案。
+
+如果使用者提供的回饋是：
+
+「太客氣了」
+
+應進一步轉換成可執行的規則，例如：
+
+「避免使用過度客套的開場語；直接進入主題；保留基本禮貌即可。」
+
+如果使用者說：
+
+「太像 AI 寫的」
+
+應分析具體原因，例如：
+
+「減少制式化條列、避免過度完整的結論句、降低書面語比例，改採自然口語句型。」
+
+如果使用者說：
+
+「不夠專業」
+
+應將其轉換為：
+
+「使用該產業常用專業術語；避免過度口語化；先說明判斷依據，再提出建議。」
+
+所有模糊的使用者回饋，都應盡可能轉換成具體、可執行、可驗證的提示詞規則。
+
+# 開始訓練
+
+現在請先要求使用者提供：
+
+「① 目前的語氣風格提示詞」
+
+收到後，再開始第一輪訓練。</code></pre><p id="3b79fbe8-f70c-802b-96d3-d1f3f6ee9e77" class="" dir="auto">
+</p></div></details></li></ol></div><div id="3b79fbe8-f70c-805f-ae94-e91688a1f8f4" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-8071-8e70-c6eb1c3c3edc" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2026.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2026.png"><img style="width:562.12353515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2026.png"/></a></figure></div></div><div id="3b79fbe8-f70c-8043-80fe-f5ea1eaa68f1" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-805a-b951-e07ef93fcd2e" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ol type="1" id="3b79fbe8-f70c-80c8-81e8-f7254a1c59e6" class="numbered-list" start="2" dir="auto"><li>使用者提供一則 Email 或 LINE 對話內容，作為訓練題目</li></ol></div><div id="3b79fbe8-f70c-8037-9a41-d88d2dc52451" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-80af-92fa-f90a763f9abf" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2027.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2027.png"><img style="width:562.116455078125px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2027.png"/></a></figure></div></div><div id="3b79fbe8-f70c-8006-b840-e6db334cbc3d" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80c1-b8d5-e6bc5cfc0fbe" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ol type="1" id="3b79fbe8-f70c-80f8-ba37-caeee04ec3c2" class="numbered-list" start="3" dir="auto"><li>AI 依據語氣風格提示詞（Prompt），用【提示詞 A】生成回覆內容</li></ol></div><div id="3b79fbe8-f70c-80f8-ab37-ddb182646810" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-8082-bed4-e15af4abd65b" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2028.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2028.png"><img style="width:917.0098876953125px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2028.png"/></a></figure></div></div><div id="3b79fbe8-f70c-80d7-af5b-cea8804ee56c" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-801f-a690-d69b3d8119bd" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ol type="1" id="3b79fbe8-f70c-8008-a031-fe1ba5ca9698" class="numbered-list" start="4" dir="auto"><li>使用者依下方李克特五點量表為回覆評分</li></ol></div><div id="3b79fbe8-f70c-8082-b81f-c459b7e7a7b9" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-808f-b5b6-dfaeeb4adc08" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2029.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2029.png"><img style="width:955.007080078125px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2029.png"/></a></figure></div></div><div id="3b79fbe8-f70c-80fb-b295-eafb19509466" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80ae-aa6f-eae3c80bc603" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ol type="1" id="3b79fbe8-f70c-8067-9edd-f0e11bc6e451" class="numbered-list" start="5" dir="auto"><li>評分為 3 分以下時，使用者用【提示詞 B】回饋修正意見，並更新語氣風格提示詞（Prompt）<ul id="3b79fbe8-f70c-8074-bfb0-c94c1747cbc1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>李克特五點量表：這則回覆有多像你本人會寫的？</strong></li></ul><table id="3b79fbe8-f70c-80e8-8c3a-d572d2a9c87c" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b79fbe8-f70c-805b-9db1-e6cb9b44b7cd" dir="ltr"><th id=";Q}K" class="simple-table-header-color simple-table-header" style="width:63.99999237060547px">分數</th><th id="fPlW" class="simple-table-header-color simple-table-header">說明</th></tr></thead><tbody><tr id="3b79fbe8-f70c-80e2-a75f-e9558db0182c" dir="ltr"><td id=";Q}K" class="" style="width:63.99999237060547px">1</td><td id="fPlW" class="">完全不像我</td></tr><tr id="3b79fbe8-f70c-800c-b433-d2d1cd326f42" dir="ltr"><td id=";Q}K" class="" style="width:63.99999237060547px">2</td><td id="fPlW" class="">不太像</td></tr><tr id="3b79fbe8-f70c-8091-9496-c2f0d5631fa4" dir="ltr"><td id=";Q}K" class="" style="width:63.99999237060547px">3</td><td id="fPlW" class="">普通，一半一半</td></tr><tr id="3b79fbe8-f70c-8043-bafa-d5bc48fc14db" dir="ltr"><td id=";Q}K" class="" style="width:63.99999237060547px">4</td><td id="fPlW" class="">蠻像的</td></tr><tr id="3b79fbe8-f70c-800a-9f14-c2e335004e0a" dir="ltr"><td id=";Q}K" class="" style="width:63.99999237060547px">5</td><td id="fPlW" class="">非常像，幾乎就是我會寫的</td></tr></tbody></table></li></ol><ol type="1" id="3b79fbe8-f70c-80de-8951-f1be995ec581" class="numbered-list" start="6" dir="auto"><li>重複步驟 2，直到使用者停止提供訓練題目為止</li></ol></div><div id="3b79fbe8-f70c-80aa-a58e-ddfbade5daf6" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-805e-b6f9-d4221f40988e" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2030.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2030.png"><img style="width:446.4985656738281px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2030.png"/></a></figure></div></div><h3 id="3b79fbe8-f70c-8006-a257-dbe933d3c59a" class="" dir="auto">🎓 進階再進階實作：語氣風格提示詞＋專有名詞資料庫｜<a href="https://notebook.google.com/notebook/8f872f7a-1864-4f17-87e4-fb3173d8df8a">Gemini Notebook</a></h3><div id="3b79fbe8-f70c-80dd-b4a1-c553deb8f821" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80c1-bda8-d8ed256cea5d" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><figure id="3b79fbe8-f70c-808d-bdd8-c51617d200fa" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2031.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2031.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2031.png"/></a></figure></div><div id="3b79fbe8-f70c-808e-b8b4-ed76017d776d" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><figure id="3b79fbe8-f70c-8080-9769-dd2f873780ee" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2032.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2032.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2032.png"/></a></figure></div><div id="3b79fbe8-f70c-800c-994a-d669dd8e6fe5" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><figure id="3b79fbe8-f70c-80a5-bc2a-ceb96d4012d0" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2033.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2033.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2033.png"/></a></figure></div></div><div id="3b79fbe8-f70c-80f0-bc26-c96a59f5189f" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80c1-9d10-e50b72be68ff" style="width:43.75%" class="column" data-notion-column-ratio="0.4375" dir="auto"><h3 id="3b79fbe8-f70c-800a-a81d-c13ea128371e" class="" dir="auto">AI 美中不足的部分：人情世故</h3><p id="3b79fbe8-f70c-804c-a278-d0de30b0d037" class="" dir="auto">即使語氣風格提示詞（Prompt）調校得再精準，AI 依然有它學不會的地方——<strong>人情世故</strong>。</p><p id="3b79fbe8-f70c-8003-a8ba-ecbd17cbf232" class="" dir="auto">AI 能模仿你的用詞、句型、口頭禪，卻無法真正「猜透人心」：</p><ul id="3b79fbe8-f70c-8097-8946-c374d2bfd8a4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">它不知道客戶這封信背後其實還在生上次交期延誤的氣</li></ul><ul id="3b79fbe8-f70c-80c7-8a4a-e799842d9776" class="bulleted-list" dir="auto"><li style="list-style-type:disc">不知道主管這句話是在<strong><span style="border-bottom:0.05em solid">試探還是真心徵詢意見</span></strong></li></ul><ul id="3b79fbe8-f70c-8055-a729-fd1adf7d0eb1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">讀不出對方已讀不回三天代表的<strong><span style="border-bottom:0.05em solid">沉默訊號</span></strong></li></ul><p id="3b79fbe8-f70c-8043-9ca7-f320a0c31879" class="" dir="auto">這些「閱讀讀空氣（察言觀色）」的能力，來自長期累積的人際經驗與同理心，是 AI 目前最大的局限。</p></div><div id="3b79fbe8-f70c-802f-8c94-e6c0598ddb81" style="width:56.25%" class="column" data-notion-column-ratio="0.5625" dir="auto"><figure id="3b69fbe8-f70c-80c2-b187-eb8399147b22" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2034.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2034.png"><img style="width:703.99853515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2034.png"/></a></figure></div></div><blockquote id="3b79fbe8-f70c-801b-b39c-e919d44d7bb8" class="" dir="auto">⚠️ 建議：AI 產出的回覆在正式送出前，務必自己再讀一次——尤其是<strong>關係敏感</strong>或<strong>情緒張力較高</strong>的對話，人的判斷永遠是最後一道防線。</blockquote><hr id="3b79fbe8-f70c-8051-84ab-ed075a5787a8" dir="auto"/><h2 id="3b69fbe8-f70c-8029-9984-d0e61591293b" class="" dir="auto">📧 單元四：商務 Email 與書信寫作</h2><div id="3b79fbe8-f70c-8055-b51d-e8e3c37b056d" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80ed-ac22-e2d2047ed54d" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-809d-87e5-c98c316e3595" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit4.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit4.png"><img style="width:623.99853515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit4.png"/></a></figure></div><div id="3b79fbe8-f70c-80cd-a20d-e82b35a18834" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b69fbe8-f70c-80e2-991f-d22917adf351" class="" dir="auto">情境故事：小壯的三封信</h3><p id="3b69fbe8-f70c-809a-a367-daeb77ab7db5" class="" dir="auto">小壯這週要處理三封信：跟客戶確認技術規格、協調交期延遲、還要回應報價殺價要求，每一封的語氣拿捏都讓他很掙扎。</p><blockquote id="3b69fbe8-f70c-801c-bfbb-febe7abe2aeb" class="" dir="auto">✏️ <strong>現況回饋</strong>：寫下你目前撰寫商務 Email 的平均耗時與常見卡關點。</blockquote></div></div><h3 id="3b69fbe8-f70c-8021-a317-e16ab283b966" class="" dir="auto">核心流程：商務書信寫作流程</h3><pre id="3b69fbe8-f70c-803e-8b89-e5e512a3c7ac" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph LR
+    A[判斷語氣\n與決策情境] --&gt; B[&quot;套用 GAP／PSB\n或五層提示詞結構&quot;]
+    B --&gt; C[產出\n草稿]
+    C --&gt; D[&quot;依六項審核清單\n複核用詞與語氣&quot;]
+    D --&gt; E[定稿\n寄出]</code></pre><h3 id="3b69fbe8-f70c-8041-831d-f79245d07414" class="" dir="auto">語氣與決策情境</h3><ul id="3b69fbe8-f70c-80e3-b882-f3f0ffe0ad48" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>語氣</strong>：描述「怎麼說」，如正式、委婉。</li></ul><ul id="3b69fbe8-f70c-809b-8f22-f2cec304b7dd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>決策情境</strong>：描述「這封信要達成什麼」，如說服、婉拒、接受、談判、訴求、抗議。</li></ul><p id="3b69fbe8-f70c-8093-9517-e5a18493ed1e" class="" dir="auto">建議以矩陣系統性嘗試不同組合，體會同一件事在不同交叉下的表達差異，並嘗試從其中最適宜的「<mark class="highlight-red" data-notion-highlight="red"><strong>切角（angle）</strong></mark>」：</p><table id="3b69fbe8-f70c-80b2-9532-cc8b224c52a2" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b69fbe8-f70c-803b-8f90-e336199822a0" dir="ltr"><th id="UZom" class="simple-table-header-color simple-table-header" style="width:125.13067626953125px">決策情境 ＼ 語氣</th><th id="jx@h" class="simple-table-header-color simple-table-header" style="width:381.99005126953125px">正式</th><th id="Dew\" class="simple-table-header-color simple-table-header" style="width:437.9772644042969px">委婉</th></tr></thead><tbody><tr id="3b69fbe8-f70c-80e5-9c1c-e4e5695757b6" dir="ltr"><td id="UZom" class="" style="width:125.13067626953125px">說服</td><td id="jx@h" class="" style="width:381.99005126953125px">以「總持有成本」而非單價切入，正式提案說服客戶不需砍價</td><td id="Dew\" class="" style="width:437.9772644042969px">以長期合作關係為由，委婉建議客戶考慮加購年約方案</td></tr><tr id="3b69fbe8-f70c-8066-8018-f4ae8a380beb" dir="ltr"><td id="UZom" class="" style="width:125.13067626953125px">婉拒</td><td id="jx@h" class="" style="width:381.99005126953125px"><span style="border-bottom:0.05em solid">【免費保固半年－正式版】引用保固政策條文，正式婉拒並提出替代方案</span></td><td id="Dew\" class="" style="width:437.9772644042969px"><span style="border-bottom:0.05em solid">【免費保固半年－委婉版】肯定長期合作關係，委婉說明政策限制後提供替代方案</span></td></tr><tr id="3b69fbe8-f70c-80a7-805f-c572a9bb78b1" dir="ltr"><td id="UZom" class="" style="width:125.13067626953125px">接受</td><td id="jx@h" class="" style="width:381.99005126953125px">正式確認接受客戶新增的技術規格要求，並列出後續時程</td><td id="Dew\" class="" style="width:437.9772644042969px">委婉但明確地接受變更，同時善意提醒可能的交期影響</td></tr><tr id="3b69fbe8-f70c-800b-9e97-f0d3b5ec6ced" dir="ltr"><td id="UZom" class="" style="width:125.13067626953125px">談判</td><td id="jx@h" class="" style="width:381.99005126953125px"><span style="border-bottom:0.05em solid">【免費保固半年－談判版】正式提出「簽年約送半年保固」的替代條件展開談判</span></td><td id="Dew\" class="" style="width:437.9772644042969px">委婉試探客戶真正在意的條件（價格／保固／帳期），保留彈性空間</td></tr><tr id="3b69fbe8-f70c-80c4-a57b-df4a1b19a155" dir="ltr"><td id="UZom" class="" style="width:125.13067626953125px">訴求</td><td id="jx@h" class="" style="width:381.99005126953125px">正式提出延長付款期限之書面訴求，並附上具體理由</td><td id="Dew\" class="" style="width:437.9772644042969px">委婉表達目前交期壓力，尋求客戶體諒與彈性</td></tr><tr id="3b69fbe8-f70c-8025-ad6a-dfe1b2d7f68c" dir="ltr"><td id="UZom" class="" style="width:125.13067626953125px">抗議</td><td id="jx@h" class="" style="width:381.99005126953125px">正式抗議對方未依約付款，並保留後續追訴權利</td><td id="Dew\" class="" style="width:437.9772644042969px">委婉但堅定地表達對延遲交貨一事的不滿與疑慮</td></tr></tbody></table><p id="3b69fbe8-f70c-8095-b087-f4ca21ac129a" class="" dir="auto"><strong>「免費保固半年」案例三種版本</strong>（單元最末的紅白小組互動會再次用到）｜<a href="https://chatgpt.com/g/g-p-6a76f7bdf1ec81918c306db09ca9e56b-2026-speech/c/6a789fee-c7d0-83e8-8c7c-0687d65a4f9e">ChatGPT</a></p><div id="3b79fbe8-f70c-804b-8ac3-e4d0a5b39fd8" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80da-a017-c4b04803d2e5" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><ul id="3b79fbe8-f70c-80ba-a258-e950722941ae" class="bulleted-list" dir="auto"><li style="list-style-type:disc">版本A（婉拒×委婉）<pre id="3b69fbe8-f70c-80b1-839c-d7c04b16d08f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請以委婉但堅定的語氣，撰寫一封婉拒客戶「追加半年免費保固」要求的回信，肯定對方的長期合作關係，同時清楚說明公司政策的一致性，並提供替代方案（如：有償延長保固方案）。</code></pre><figure id="3b79fbe8-f70c-8082-9430-ca5e52a11a4c" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2035.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2035.png"><img style="width:239.01988220214844px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2035.png"/></a></figure></li></ul></div><div id="3b79fbe8-f70c-806b-b8ea-fe0a0e122d3e" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><ul id="3b79fbe8-f70c-80dc-9e23-eaf94f015957" class="bulleted-list" dir="auto"><li style="list-style-type:disc">版本B（婉拒×正式）<pre id="3b79fbe8-f70c-8075-ae38-c15046043361" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請以正式的語氣，撰寫一封回信，引用保固政策條文說明無法追加免費保固，同時保持專業與尊重的態度。</code></pre><figure id="3b79fbe8-f70c-8087-84eb-c6afa33c66de" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2036.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2036.png"><img style="width:239.01988220214844px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2036.png"/></a></figure><p id="3b79fbe8-f70c-80c3-992b-d70d7e79a911" class="" dir="auto">
+</p></li></ul></div><div id="3b79fbe8-f70c-80bc-941a-d718d9fe6267" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><ul id="3b79fbe8-f70c-80ff-a43d-f99db10206ca" class="bulleted-list" dir="auto"><li style="list-style-type:disc">版本C（談判×正式）<pre id="3b79fbe8-f70c-80f1-9e61-f1a52341618e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請以正式且帶有談判空間的語氣，撰寫一封回信，先說明現行保固政策無法追加，但可提出「若簽署年度採購合約則加贈半年保固」的替代條件，鼓勵對方考慮長期合作方案。</code></pre><figure id="3b79fbe8-f70c-80af-bd1a-c40a00ecf97e" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2037.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2037.png"><img style="width:239.01988220214844px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2037.png"/></a></figure></li></ul></div></div><div id="3b79fbe8-f70c-8025-897d-e775f14ce070" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8059-a3ea-ed12d72e60f1" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b69fbe8-f70c-80fa-ad40-e4fdea07c965" class="" dir="auto">GAP 框架：Goal、Audience、Purpose → <mark class="highlight-red" data-notion-highlight="red"><strong>PGA</strong></mark></h3><ul id="3b69fbe8-f70c-80d2-86f9-cab13dca210f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Purpose（目的／初衷）</strong><ul id="3b79fbe8-f70c-80e4-bcc0-c57dffad8dd7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">定義：事情的起因與大方向，回答「為什麼要做這件事？」</li></ul><ul id="3b79fbe8-f70c-80c4-ae4b-de1eb99cd27f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">特徵：屬於較抽象、宏觀的<strong><span style="border-bottom:0.05em solid">價值</span></strong>或存在意義。</li></ul><ul id="3b79fbe8-f70c-803f-946e-e330dafe9e7c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">範例：舉辦一場講座的目的是為了「提升大家對環保的重視」。</li></ul></li></ul><ul id="3b79fbe8-f70c-8015-9dd4-cca1424b710c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Goal（目標／</strong><strong><span style="border-bottom:0.05em solid">成果</span></strong><strong>）</strong><ul id="3b79fbe8-f70c-80da-b0bd-dc21c933618a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">定義：具體想完成的數字或成果，回答「要朝哪個方向達成什麼具體標的？」</li></ul><ul id="3b79fbe8-f70c-8095-9d89-febf7a1df05f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">特徵：必須明確、可被衡量與檢視（如搭配 SMART 原則）。</li></ul><ul id="3b79fbe8-f70c-8004-a457-d51bb1ce2ae8" class="bulleted-list" dir="auto"><li style="list-style-type:circle">範例：舉辦講座的具體目標是「吸引 100 人報名，並在會後回收 80 份滿意度問卷」。</li></ul></li></ul><ul id="3b79fbe8-f70c-8001-b52a-d610270d1689" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Audience（受眾／聽眾）→ </strong><mark class="highlight-red" data-notion-highlight="red"><strong>以 DISC 分析溝通偏好</strong></mark><ul id="3b79fbe8-f70c-809c-aea8-e6d3678c0580" class="bulleted-list" dir="auto"><li style="list-style-type:circle">定義：你的訊息、產品或簡報是寫給誰、說給誰聽的？</li></ul><ul id="3b79fbe8-f70c-80c2-b783-d53116c3f789" class="bulleted-list" dir="auto"><li style="list-style-type:circle">特徵：決定了你的說話語氣、內容深淺與呈現方式。</li></ul><ul id="3b79fbe8-f70c-80a4-871c-effd2b6799cd" class="bulleted-list" dir="auto"><li style="list-style-type:circle">範例：該場環保講座的受眾是「對環保無概念的社區居民」或「大學環保社團學生」。</li></ul></li></ul><pre id="3b69fbe8-f70c-806b-8106-edecf6dab00b" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">quadrantChart
+    title 受眾 DISC 分析
+    x-axis 內斂 --&gt; 外向
+    y-axis 任務導向 --&gt; 人際導向
+    quadrant-1 I 影響型：親切、帶故事性
+    quadrant-2 D 支配型：直接、給結論
+    quadrant-3 C 謹慎型：嚴謹、附佐證
+    quadrant-4 S 穩健型：循序漸進、給安全感</code></pre></div><div id="3b79fbe8-f70c-8062-b09f-f9bff7dea92e" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b69fbe8-f70c-80f9-b10f-f276f0e67a21" class="" dir="auto">PSB 框架：Problem、Solution、Benefit</h3><ul id="3b69fbe8-f70c-8080-98fe-f5e70db2941f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Problem（問題 / 痛點）</strong><ul id="3b79fbe8-f70c-80e0-8215-df94bb2754bb" class="bulleted-list" dir="auto"><li style="list-style-type:circle">定義：目標受眾目前面臨的痛點、困擾或未被滿足的需求。</li></ul><ul id="3b79fbe8-f70c-8001-ae1f-d6d71498ccab" class="bulleted-list" dir="auto"><li style="list-style-type:circle">特徵：具體、有急迫性、會引起負面情緒或效率低落。</li></ul><ul id="3b79fbe8-f70c-80cd-87bf-e17a429d997e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">範例：傳統行銷廣告成本太高，且無法精準找到潛在客戶。</li></ul></li></ul><ul id="3b79fbe8-f70c-8007-8738-c71f789b6280" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Solution（方案 / 對策）</strong><ul id="3b79fbe8-f70c-80b7-8bae-cc96de619ed5" class="bulleted-list" dir="auto"><li style="list-style-type:circle">定義：為了解決該問題所提供的產品、服務或具體作法。</li></ul><ul id="3b79fbe8-f70c-8041-b69c-f273f495db9a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">特徵：直接對應問題、可行、具備行動導向。</li></ul><ul id="3b79fbe8-f70c-80d5-8ab8-e82b86471283" class="bulleted-list" dir="auto"><li style="list-style-type:circle">範例：導入精準的社群內容行銷與大數據廣告投放。</li></ul></li></ul><ul id="3b79fbe8-f70c-80b7-81bf-df1034da623d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Benefit（好處 / </strong><strong><span style="border-bottom:0.05em solid">價值</span></strong><strong>）</strong><ul id="3b79fbe8-f70c-800a-a420-c035a8f58646" class="bulleted-list" dir="auto"><li style="list-style-type:circle">定義：採用該方案後，為客戶帶來的最終價值或正面改變。</li></ul><ul id="3b79fbe8-f70c-8073-9ede-e0aed46db216" class="bulleted-list" dir="auto"><li style="list-style-type:circle">特徵：長遠、有感、滿足心理或實質利益（省時、賺錢、安心）。</li></ul><ul id="3b79fbe8-f70c-8060-9be1-e33350622e4d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">範例：大幅降低行銷預算，並讓業績在三個月內顯著成長。</li></ul><p id="3b79fbe8-f70c-8088-a9e5-c77edb1abbc3" class="" dir="auto">
+</p></li></ul></div></div><h3 id="3b69fbe8-f70c-80b0-9c0a-f1dfc7c13d15" class="" dir="auto">✅ 實作：交期協調信｜ChatGPT</h3><div id="3b79fbe8-f70c-8000-893e-f31e14de5ef3" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80bf-bef6-f11ebab15d59" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><pre id="3b69fbe8-f70c-8019-8fc7-c9c540111e1b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">【GAP】
+Goal：取得客戶同意將交期由原訂日期延後兩週，且不影響信任關係。
+Audience：客戶窗口為採購經理，重視流程與白紙黑字（偏C型）。
+Purpose：告知＋協商。
+
+請依上述設定，撰寫一封約200字的交期延遲協調信，格式包含：主旨、問候、說明原因、提出方案、行動呼籲。</code></pre></div><div id="3b79fbe8-f70c-80e2-83a9-f66687fa4762" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><pre id="3b79fbe8-f70c-804a-b26d-d9a4baf44644" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">【PSB】
+Problem：關鍵零件供應商延遲交貨，若強行如期交付恐犧牲品質。
+Solution：建議延後兩週交貨，並提供每週進度回報作為補償。
+Benefit：確保最終交付品質穩定，降低驗收後的品質爭議風險。
+
+請依上述設定，撰寫一封約200字的交期延遲協調信，格式包含：主旨、問候、說明原因、提出方案、行動呼籲。</code></pre></div></div><h3 id="3b69fbe8-f70c-80f3-88bf-f30d08ee171c" class="" dir="auto">五層提示詞結構：科技製造業客戶溝通範本</h3><pre id="3b69fbe8-f70c-8082-a507-c02c4f8f9df5" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph TD
+    A[角色設定] --&gt; B[情境輸入]
+    B --&gt; C[任務定義]
+    C --&gt; D[格式要求]
+    D --&gt; E[輸出範例]</code></pre><div id="3b79fbe8-f70c-802b-99fa-f88fb0636ba1" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8063-830a-df400a179e77" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="3b69fbe8-f70c-80f8-ae39-c355843f8ca7" class="" dir="auto"><strong>範例 A（技術規格確認信）</strong></p><pre id="3b69fbe8-f70c-80c7-8696-d967ad3cb249" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">角色設定：你是一位設備商的資深應用工程師。
+情境輸入：客戶為封測廠，近期詢問你們的設備是否支援其現有系統的資料格式介接。
+任務定義：撰寫一封技術規格確認信，向客戶確認介接需求細節。
+格式要求：主旨15字內、條列列出需要客戶確認的3項技術細節、結尾提出安排技術會議的明確時間選項。
+輸出範例：〔可貼上過去撰寫良好的技術信件作為參考〕</code></pre><h3 id="3b69fbe8-f70c-8014-bca1-e1fe4e331a7c" class="" dir="auto">✅ 實作：技術規格確認信</h3><ul id="3b69fbe8-f70c-8047-8ffe-d86e279112d3" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">套用範例 A 產出技術規格確認信草稿</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-809f-b508-d1807417ea6f" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">依六項審核清單複核</span><div class="indented"></div></li></ul></div><div id="3b79fbe8-f70c-80cc-9277-cff4a40ae009" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="3b69fbe8-f70c-808c-be90-f456bcb508bd" class="" dir="auto"><strong>範例 B（報價談判信）</strong></p><pre id="3b69fbe8-f70c-80bb-8b05-e2189cd2af60" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">角色設定：你是一位設備商的業務主管。
+情境輸入：客戶對報價提出10%的降價要求，理由是同業競品價格較低。
+任務定義：撰寫一封回應報價談判的信件，守住核心價格但展現彈性。
+格式要求：先肯定客戶的比較用心，再以「總持有成本」（而非單價）切入說明價值，最後提出可調整的非價格條件（如帳期、保固）作為替代讓步，結尾邀約電話討論。
+輸出範例：〔可貼上過去撰寫良好的談判信件作為參考〕</code></pre><h3 id="3b69fbe8-f70c-809e-a4f9-fcc8e3099271" class="" dir="auto">✅ 實作：報價談判信</h3><ul id="3b69fbe8-f70c-8012-9538-da6fd0b4f333" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">套用範例 B 產出報價談判信草稿</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80ac-aaaa-cafe6bf489b7" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">依六項審核清單複核</span><div class="indented"></div></li></ul></div></div><h3 id="3b69fbe8-f70c-8027-b168-c25e34a637c5" class="" dir="auto">🔴⚪ 紅白小組互動：免費保固半年怎麼談？</h3><p id="3b69fbe8-f70c-8009-8197-cee30958cf3f" class="" dir="auto">分兩組進行角色扮演演練， 再次使用本單元開頭的「免費保固半年」案例，兩組各自產出「開場說法」後，進行實際口頭交鋒，最後透過投票或討論：哪一種語氣與決策組合最有效？</p><div id="3b79fbe8-f70c-8039-837a-d2e1f203c904" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8041-a826-d8572de101f8" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="3b69fbe8-f70c-80e3-ad1f-c2954fa3efb3" class="" dir="auto">🔴 <strong>紅隊（客戶方｜先手）</strong>：用 AI 準備「<strong>爭取免費保固半年</strong>」的訴求與談判籌碼</p><p id="3b69fbe8-f70c-807a-9536-e82221cdb9df" class="" dir="auto"><strong>紅隊提示詞</strong></p><pre id="3b69fbe8-f70c-80f8-8a8a-fe31b83c6384" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是客戶方的採購主管。請幫我準備一段簡短的口頭訴求（不超過100字），向設備商爭取「免費延長保固半年」，並準備一個備用籌碼（如：承諾下一年度加購金額），以備對方拒絕時使用。</code></pre></div><div id="3b79fbe8-f70c-808e-9f8d-c961726ddaaa" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="3b69fbe8-f70c-80f6-99a4-f43dc3ae5c41" class="" dir="auto">⚪ <strong>白隊（業務方｜後手）</strong>：用 AI 準備「<strong>婉拒但保住合作關係</strong>」的回應與替代方案（可直接套用前述三種版本）</p><p id="3b69fbe8-f70c-8094-abbf-e6908ab40977" class="" dir="auto"><strong>白隊提示詞</strong></p><pre id="3b69fbe8-f70c-80c5-93db-f13dff934f2a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是設備商的業務主管。客戶剛口頭提出「希望免費延長保固半年」的要求。請幫我準備一段簡短回應（不超過100字），先肯定合作關係，說明政策限制，並主動提出「簽年約送半年保固」的替代方案。
+
+以下為紅隊（客戶）的來信。</code></pre></div></div><p id="3b69fbe8-f70c-806c-8007-d647fbeb94f8" class="" dir="auto">
+</p><hr id="3b69fbe8-f70c-80fb-a7a3-e4846632cba6" dir="auto"/><h2 id="3b69fbe8-f70c-8006-a315-c0b94eb92343" class="" dir="auto">📊 單元五：報告與提案文件撰寫</h2><div id="3b79fbe8-f70c-80f6-8043-cffa31dad3a9" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-80ea-b576-ea21d35b80ba" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-80b8-9120-dd300844b480" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit5.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit5.png"><img style="width:623.99853515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit5.png"/></a></figure></div><div id="3b79fbe8-f70c-80cf-a6b5-eda92ee07e18" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b69fbe8-f70c-801b-b850-e96829e46988" class="" dir="auto">情境故事：大壯的提案報告</h3><p id="3b69fbe8-f70c-8005-9b55-d872f0f31305" class="" dir="auto">大壯需要將客戶會議紀要、設備規格書與口頭需求，整合成一份完整的技術提案報告，過去總是東拼西湊到深夜。</p><blockquote id="3b69fbe8-f70c-804f-8f69-c9ed9c7ec7f4" class="" dir="auto">✏️ <strong>現況回饋</strong>：寫下你目前撰寫報告／提案的平均耗時與流程。</blockquote><p id="3b79fbe8-f70c-8073-ae4c-d6bb1ee1bb37" class="" dir="auto">
+</p></div></div><h3 id="3b69fbe8-f70c-8060-826d-f5035f7d8006" class="" dir="auto">核心流程：文件撰寫流程</h3><pre id="3b69fbe8-f70c-80cd-bbf3-d12a6c6e9099" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph LR
+    A[資料蒐集彙整] --&gt; B[&quot;結構化大綱\n(待確認)&quot;]
+    B --&gt; C[逐段展開內容]
+    C --&gt; D[圖表數據初步解讀]
+    D --&gt; E[&quot;事實查核\n(防偽訓練)&quot;]
+    E --&gt; F[定稿]</code></pre><h3 id="3b69fbe8-f70c-8070-9ad5-d8e83caad372" class="" dir="auto">為什麼不建議一次性產出整份文件</h3><p id="3b69fbe8-f70c-80fd-81a3-c4d39859b10e" class="" dir="auto">一次性要求 AI 產出完整文件，容易出現邏輯跳躍、內容失焦；「大綱先行」兩階段法能讓你在動筆前就確認方向，大幅降低返工。</p><h3 id="3b69fbe8-f70c-8031-a8bc-e61391cd016b" class="" dir="auto">階段一：資料彙整與大綱產出</h3><div id="3b79fbe8-f70c-80d6-8853-d09e8dac2661" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8073-a7ba-e30478a63540" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><pre id="3b69fbe8-f70c-801e-bce4-c294f8f5314a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請閱讀以下原始資料（會議紀要／規格書／口頭需求整理），先不要展開內容，針對ＯＯ主題僅先產出一份結構化「報告大綱」，包含：
+1. 報告目的與範圍
+2. 章節架構（列出3–6個主要章節標題）
+3. 每個章節預計涵蓋的重點（各1–2句話說明，不需展開全文）
+4. 尚缺乏、需要我補充的資訊
+
+請先輸出大綱，待我確認後，再進行下一步的內容展開。
+
+【以下貼上原始資料】或【使用 Gemini Notebook 存放原始資料】</code></pre></div><div id="3b79fbe8-f70c-8064-bd77-fea75aee00c7" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><aside class="block-color-yellow_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="yellow_background" style="white-space:pre-wrap;display:flex" id="3b79fbe8-f70c-8072-a126-fef302790c0a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b79fbe8-f70c-801e-a27c-e0f25567480a" class="" dir="auto">資料搜集的技術</p><ul id="3b79fbe8-f70c-80e1-95a7-e1ac578c8ac5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">工具<ul id="3b79fbe8-f70c-80d7-8e64-f9d75bbcb8e0" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><a href="https://notebook.google.com/">NotebookLM</a> + Deep Reasearch</li></ul><ul id="3b79fbe8-f70c-80ef-a644-c537edcbb17e" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><a href="https://manus.im/">Manus</a> + Wide Research</li></ul><ul id="3b79fbe8-f70c-800b-9ffe-c395089e73b3" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><a href="https://gemini.google.com/app">Gemini</a></li></ul><ul id="3b79fbe8-f70c-8005-96fb-daa616c71c92" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><a href="https://www.perplexity.ai/">perplexity</a>（即時）</li></ul><ul id="3b79fbe8-f70c-8052-850b-d51aca8ae5e8" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><a href="https://copilot.microsoft.com/">Copilot</a> + 研究報告$</li></ul><ul id="3b79fbe8-f70c-80bc-9f15-f6b81e263188" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><a href="https://chatgpt.com/">ChatGPT</a></li></ul></li></ul><details id="3b79fbe8-f70c-8089-ab45-d8a31b820a48" open="" class="toggle" dir="auto"><summary>指令</summary><div class="indented"><p id="3b79fbe8-f70c-8065-a3ba-e9f8851841d5" class="" dir="auto">@深入研究<br/>### INPUT<br/>以下品牌關鍵字或網址為中華民國企業在市場上的品牌、專有名稱或網站，請以「<strong><span style="border-bottom:0.05em solid">品牌</span></strong>」為主軸，進行廣泛且深入的研究，範圍包含但不限於<strong><span style="border-bottom:0.05em solid">品牌、行銷、客群、印象、新聞、網路評價、獲獎、知名度、影響力、競品</span></strong>等面向之資料。<br/>- ＯＯ股份有限公司<br/>- ＯＯ產品<br/>- ＯＯ型號<br/>- 品牌名稱<br/>- 官網<br/>- 社群網站<br/>- 104 網址<br/><br/>### OUTPUT<br/>- 以繁體中文為主<br/>- 註明作者：人工智慧平台名稱<br/>- 使用markdown格式</p></div></details></div></aside></div></div><h3 id="3b69fbe8-f70c-8029-954c-c82f76c844e2" class="" dir="auto">Genmine NotebookLM + <a href="https://gemini.google.com/app/766c815aaf64b228">Gemini</a> 應用：<span style="border-bottom:0.05em solid">長篇文件</span>重點萃取</h3><p id="3b69fbe8-f70c-802c-be8d-c26d36dd2e6e" class="" dir="auto">面對大量技術文件時，可運用 NotebookLM 類工具進行重點萃取與問答式查詢，快速定位關鍵資訊，而不需逐字閱讀整份文件。</p><div id="3b79fbe8-f70c-804a-b53f-c3ad0b03053b" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-8096-aac0-ed8046a8171c" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><figure id="3b79fbe8-f70c-8046-ada9-d76b3b1dea73" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2038.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2038.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2038.png"/></a></figure></div><div id="3b79fbe8-f70c-80df-a843-c371639c1259" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><figure id="3b79fbe8-f70c-8059-aa57-cd3f96772066" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2039.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2039.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2039.png"/></a></figure><p id="3b79fbe8-f70c-8027-9043-d6e4020b3a61" class="" dir="auto">
+</p></div><div id="3b79fbe8-f70c-80d9-8e7b-c0d52441015b" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><figure id="3b79fbe8-f70c-8035-ae61-facaac44985e" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2040.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2040.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2040.png"/></a></figure></div><div id="3b79fbe8-f70c-80ec-8c5e-da6688f17c5c" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><figure id="3b79fbe8-f70c-809f-b30b-c663a19b9d60" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2041.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2041.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2041.png"/></a></figure></div></div><h3 id="3b69fbe8-f70c-8029-9adc-f943760a7e51" class="" dir="auto">✅ 實作：從需求到大綱</h3><ul id="3b69fbe8-f70c-8023-9842-d75155b45adf" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">以真實工作中的一份報告或提案需求為題</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-801d-9d52-d53fd5bc0d56" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">套用上方提示詞產出結構化大綱</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8072-9bbc-e6cf6267ce6d" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">聚焦大綱品質，暫不要求完整內容</span><div class="indented"></div></li></ul><h3 id="3b69fbe8-f70c-80f7-8d56-ef88cd603c94" class="" dir="auto">階段二：逐段展開與品質把關</h3><pre id="3b69fbe8-f70c-8025-88cc-e594e167e3d0" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請針對以下已確認的大綱第〔N〕節「〔章節標題〕」，展開撰寫約300–500字的內容，並遵守：
+1. 沿用前述章節已建立的用詞與語氣
+2. 若涉及具體數據，請標示【待查證】提醒我覆核來源
+3. 段落結尾請附上一句銜接下一章節的過渡句
+
+【貼上已確認的大綱與相關原始資料】</code></pre><h3 id="3b69fbe8-f70c-8088-ae8a-d6daf4b1f6b0" class="" dir="auto">圖表數據初步解讀與防偽訓練</h3><blockquote id="3b69fbe8-f70c-8037-a67c-ebaa5373b27e" class="" dir="auto">⚠️ AI 可協助對數據圖表進行初步描述性解讀，但涉及良率、稼動率等關鍵指標的判斷，<strong>務必人工複核</strong>，避免「數據幻覺」——AI 有時會編造看似合理但實際不存在的數字或趨勢。</blockquote><hr id="3b69fbe8-f70c-8037-9825-d9452d0fb83b" dir="auto"/><h2 id="3b69fbe8-f70c-8059-b089-d3e216d67ab3" class="" dir="auto">🌐 單元六：多語翻譯與跨文化商務溝通</h2><div id="3b79fbe8-f70c-8028-87c0-d97ba1906765" class="column-list" data-notion-column-list="" dir="auto"><div id="3b79fbe8-f70c-801f-8978-c68f34f277fb" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="3b79fbe8-f70c-80b7-9310-efcee1feb922" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit6.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit6.png"><img style="width:350px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_unit6.png"/></a></figure></div><div id="3b79fbe8-f70c-8069-b192-cc8aed6a0e87" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><h3 id="3b69fbe8-f70c-804b-a5e8-e7eff418fadf" class="" dir="auto">情境故事：小壯的跨國客戶信</h3><p id="3b69fbe8-f70c-801b-8173-db24a4b4d4e4" class="" dir="auto">小壯要把一封中文技術說明信翻成英文給海外客戶，直接翻譯機翻出來的英文總覺得少了點「商務感」。</p><blockquote id="3b69fbe8-f70c-80da-8d73-fe498ce425d1" class="" dir="auto">✏️ <strong>現況回饋</strong>：寫下你目前處理跨語言溝通的做法與耗時。</blockquote><p id="3b79fbe8-f70c-80c2-adac-e3dc0ab7093d" class="" dir="auto">
+</p></div></div><h3 id="3b69fbe8-f70c-8029-82ed-e1867341ba1d" class="" dir="auto">核心流程：翻譯情境分流地圖</h3><pre id="3b69fbe8-f70c-803f-ab40-f4dd8e68d79e" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph LR
+    A(客戶來信) --&gt; B(DeepL → 初稿)
+    B --&gt; C[Claude 潤飾]
+    B --&gt; D[ChatGPT 潤飾]
+    C --&gt; E
+    D --&gt; E[人工複核關鍵用詞]
+    E --&gt; F[定稿]</code></pre><h3 id="3b69fbe8-f70c-80c7-af31-e69064899bff" class="" dir="auto">三段式翻譯工作法</h3><ol type="1" id="3b79fbe8-f70c-807d-a4a4-eb241daf6240" class="numbered-list" start="1" dir="auto"><li>專用引擎出<strong><span style="border-bottom:0.05em solid">初稿</span></strong>：使用 <a href="https://www.deepl.com/en/translator">DeepL</a> 工具，將中文內容翻譯為英文。<figure id="3b79fbe8-f70c-8071-865d-e38d166a4295" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2042.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2042.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2042.png"/></a></figure></li></ol><ol type="1" id="3b79fbe8-f70c-808b-8e5b-d7c9c37a383d" class="numbered-list" start="2" dir="auto"><li>語氣<strong><span style="border-bottom:0.05em solid">潤飾</span></strong>提示詞：<ol type="a" id="3b79fbe8-f70c-8067-b3fe-cacf1191634b" class="numbered-list" start="1" dir="auto"><li>注入外商「高情商」型｜<a href="https://claude.ai/chat/c71a6d25-2b14-4a79-8d5a-7f3a5e004042">Claude</a> <pre id="3b69fbe8-f70c-804b-9f5a-f4ef046053d3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是一位精通跨國企業公關與職場心理學的溝通專家。以下這段英文是經過 DeepL 翻譯的初稿，文法正確但語氣較為生硬、像教科書。請幫我優化成具備「高情商（High EQ）」且得體的商務英文。
+
+要求：
+1. 消除機械感，加入老練的職場外交詞令，讓句子讀起來更具親和力與合作誠意。
+2. 保持原有論點，但將可能顯得生硬、催促或直白的句子，改寫得委婉卻立場堅定。
+3. 提升特定動詞與連接詞的商務質感，使其符合歐美高階商務溝通的隱含禮儀。
+
+以下為 DeepL 初稿：</code></pre><figure id="3b79fbe8-f70c-80a6-bf56-c2581e81e846" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2043.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2043.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2043.png"/></a></figure></li></ol><ol type="a" id="3b79fbe8-f70c-80de-9f37-d1c976837d84" class="numbered-list" start="2" dir="auto"><li>精簡為「美式行動導向」型｜<a href="https://chatgpt.com/g/g-p-6a76f7bdf1ec81918c306db09ca9e56b-2026-speech/c/6a78b93c-d94c-83e8-89a6-1422ae95882d">ChatGPT</a><pre id="3b79fbe8-f70c-80bf-9c07-d27b5d195487" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">你是一位美商跨國企業的高階執行長（CEO）。以下這段英文是經由 DeepL 翻譯的草稿，其保留了較多亞洲式的冗長與迂迴。請幫我精簡改寫為「結果導向（Result-oriented）」的美式高效商務英文。
+
+要求：
+1. 刪除所有不必要的客套話（Fluff）與重複語意，直接切入核心。
+2. 將冗長的複合句改寫為精煉、強烈的主動語態（Active voice），提高易讀性。
+3. 確保收件人一眼就能看出「核心痛點（Key focus）」與「下一步行動（Next Steps）」，必要時請將重點條列化（Bullet points）。
+4. 附上 2-3 個簡短、有說服力的 Email 主旨（Subject Line）。
+
+以下為 DeepL 初稿：</code></pre><figure id="3b79fbe8-f70c-8031-a386-f997b29f040d" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2044.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2044.png"><img style="width:2560px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2044.png"/></a></figure></li></ol></li></ol><ol type="1" id="3b79fbe8-f70c-802b-a315-ce1d96e54cd2" class="numbered-list" start="3" dir="auto"><li>人工<strong><span style="border-bottom:0.05em solid">複核</span></strong>提醒：<br/>請額外列出譯文中你認為需要人工複核的3個關鍵用詞或句子（如專有名詞、合約用語）。</li></ol><h3 id="3b69fbe8-f70c-80f9-b4e4-e57d0b00846d" class="" dir="auto"><strong>核心風格與翻譯差異</strong></h3><p id="3b79fbe8-f70c-80cb-9ce9-f1d5174e92ff" class="" dir="auto"><strong>Claude（文字細膩、優雅得體）</strong></p><ul id="3b79fbe8-f70c-80c4-94b7-ce0875c22a9d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>風格高雅</strong>：字詞比 ChatGPT 更精緻，能將生硬的英文句子轉化為非常道地、優雅的商務文字。</li></ul><ul id="3b79fbe8-f70c-802a-92b1-d065c4e9079e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>情感敏銳</strong>：極度擅長處理需要高度委婉、客氣或涉及敏感議題的信件（如：<strong><span style="border-bottom:0.05em solid">催款、拒絕合作、道歉信</span></strong>）。</li></ul><ul id="3b79fbe8-f70c-802f-b4f6-c65552451a6f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>口吻自然</strong>：翻譯腔最少，讀起來像是一位經驗豐富的專家親自撰寫。</li></ul><p id="3b79fbe8-f70c-8037-ba62-ddf92da75c96" class="" dir="auto"><strong>ChatGPT（直接清晰、效率導向）</strong></p><ul id="3b79fbe8-f70c-80b5-842d-fbab0a4bb078" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>結構條理</strong>：翻譯出的<strong><span style="border-bottom:0.05em solid">文筆直白、重點清晰，邏輯架構</span></strong>分明，非常適合講求高效率的職場溝通。</li></ul><ul id="3b79fbe8-f70c-8050-8738-db250c0b8ac4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>指令執行力強</strong>：如果給予明確的格式規定（例如：限制字數、強制採用特定術語），它的達成率與精準度通常比 Claude 更高。</li></ul><ul id="3b79fbe8-f70c-8040-ad7f-ea176b30cfe0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>美式作風</strong>：語氣較為直接、有自信，適合美商文化或節奏明快的內部溝通。</li></ul><h3 id="3b69fbe8-f70c-80db-bc0e-fcd3d3e5698b" class="" dir="auto">✅ 實作：翻譯並潤飾一封跨國商務信</h3><ul id="3b69fbe8-f70c-8097-8c0e-cf787ff9d798" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">套用三段式翻譯工作法翻譯一封中文商務信</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80a2-8af2-e8402f57d5cc" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-off" disabled=""/> <span class="to-do-children-unchecked">產出「更正式」與「更友善」兩種語氣版本</span><div class="indented"></div></li></ul><hr id="3b69fbe8-f70c-80b8-98ca-fc2edf110c8b" dir="auto"/><h2 id="3b69fbe8-f70c-801b-91c9-d498073ebbf5" class="" dir="auto">🧩 單元七：整合實作</h2><h3 id="3b69fbe8-f70c-8004-81db-f565b4608697" class="" dir="auto">回顧：工作情境工具</h3><table id="3b69fbe8-f70c-8098-8f1d-e265ca06f827" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b69fbe8-f70c-80d1-9656-e7b06730cb13" dir="ltr"><th id="MHiV" class="simple-table-header-color simple-table-header" style="width:228.9076690673828px">任務情境</th><th id="sxzf" class="simple-table-header-color simple-table-header" style="width:366.99998474121094px">建議工具組合</th></tr></thead><tbody><tr id="3b69fbe8-f70c-808b-a8f2-db30c106806c" dir="ltr"><td id="MHiV" class="" style="width:228.9076690673828px">會議紀錄</td><td id="sxzf" class="" style="width:366.99998474121094px">Gemini Notebook</td></tr><tr id="3b69fbe8-f70c-8037-9db0-d41134b08f5b" dir="ltr"><td id="MHiV" class="" style="width:228.9076690673828px">寫作風格設定</td><td id="sxzf" class="" style="width:366.99998474121094px">Claude Skills</td></tr><tr id="3b69fbe8-f70c-8023-b775-d75a1ba6cc42" dir="ltr"><td id="MHiV" class="" style="width:228.9076690673828px">商務 Email／書信</td><td id="sxzf" class="" style="width:366.99998474121094px">Claude（感性） 或 ChatGPT（理性）</td></tr><tr id="3b69fbe8-f70c-8055-a06c-f00e371152be" dir="ltr"><td id="MHiV" class="" style="width:228.9076690673828px">報告／提案</td><td id="sxzf" class="" style="width:366.99998474121094px"><strong>Gemini Notebook + Claude（長上下文）/ ChatGPT</strong></td></tr><tr id="3b69fbe8-f70c-8014-97b6-cf3ee7ebd9d3" dir="ltr"><td id="MHiV" class="" style="width:228.9076690673828px">多語翻譯（正式文件）</td><td id="sxzf" class="" style="width:366.99998474121094px">DeepL → Claude／ChatGPT</td></tr><tr id="3b69fbe8-f70c-80ba-87ac-edad395037cb" dir="ltr"><td id="MHiV" class="" style="width:228.9076690673828px">技能封裝</td><td id="sxzf" class="" style="width:366.99998474121094px">Claude Skills、Gemini Gems、ChatGPT GPTs ($)</td></tr><tr id="3b69fbe8-f70c-80ab-aa0c-f299a4a2507f" dir="ltr"><td id="MHiV" class="" style="width:228.9076690673828px">專有名詞資料庫／文字指令清單</td><td id="sxzf" class="" style="width:366.99998474121094px">Google Sheets</td></tr></tbody></table><h3 id="3b69fbe8-f70c-8012-a124-f76ba0b9f29d" class="" dir="auto">建立你的提示詞與技能範本庫</h3><ul id="3b69fbe8-f70c-8048-bc4e-e8935f11d979" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">整理前六單元練習過的提示詞範本</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-80cd-a1e1-ed68947455a5" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">整理專有名詞資料庫、語氣設定檔</span><div class="indented"></div></li></ul><ul id="3b69fbe8-f70c-8020-a020-cf4af7eab318" class="to-do-list" dir="auto"><li><input type="checkbox" class="checkbox checkbox-on" disabled="" checked=""/> <span class="to-do-children-checked">選擇一項封裝為正式 Skill</span><div class="indented"></div></li></ul><h3 id="3b69fbe8-f70c-80b4-963b-d894db058e07" class="" dir="auto">前後成效總對比</h3><p id="3b69fbe8-f70c-80e5-a9e8-e5a51ec00c09" class="" dir="auto">回顧今天每個單元開頭寫下的「現況回饋」，填寫下表：</p><table id="3b69fbe8-f70c-8052-ab21-fa175e580b79" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="3b69fbe8-f70c-80e3-8162-d34b057e6eb8" dir="ltr"><th id="Y;GX" class="simple-table-header-color simple-table-header">單元</th><th id="RspH" class="simple-table-header-color simple-table-header">AI輔助前耗時</th><th id="GxK{" class="simple-table-header-color simple-table-header">AI輔助後耗時</th><th id="ty}}" class="simple-table-header-color simple-table-header">節省時間</th></tr></thead><tbody><tr id="3b69fbe8-f70c-80c5-9938-f2e695a8e679" dir="ltr"><td id="Y;GX" class="">會議紀錄</td><td id="RspH" class="">120分鐘</td><td id="GxK{" class="">15分鐘</td><td id="ty}}" class="">105分鐘</td></tr><tr id="3b69fbe8-f70c-804c-b31b-d001fe16d345" dir="ltr"><td id="Y;GX" class="">Email 撰寫</td><td id="RspH" class=""></td><td id="GxK{" class=""></td><td id="ty}}" class=""></td></tr><tr id="3b69fbe8-f70c-80ef-9b36-ecec549aed9a" dir="ltr"><td id="Y;GX" class="">報告撰寫</td><td id="RspH" class=""></td><td id="GxK{" class=""></td><td id="ty}}" class=""></td></tr><tr id="3b69fbe8-f70c-8083-b326-f38a83936c04" dir="ltr"><td id="Y;GX" class="">(X)翻譯</td><td id="RspH" class=""></td><td id="GxK{" class=""></td><td id="ty}}" class=""></td></tr></tbody></table><h3 id="3b69fbe8-f70c-8087-8f67-c5910abd9a7a" class="" dir="auto">✅ 實作：設計我的 AI 文書工作流程圖</h3><pre id="3b69fbe8-f70c-80c5-a7df-e33cbf0d8853" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">請根據我以下的日常文書任務清單，幫我規劃一套「個人 AI 文書工作流程」，針對每項任務建議：使用工具、觸發時機、以及可以封裝成的技能名稱。
+
+【貼上你的任務清單】</code></pre><p id="3b69fbe8-f70c-8055-9e4d-dc1af263b6be" class="" dir="auto">範例工作流程圖模板（可依個人任務調整）：</p><pre id="3b69fbe8-f70c-808c-803d-d682c21bb288" class="code code-wrap" data-notion-code-syntax="mermaid"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph LR
+    A[會議結束] --&gt; B[NotebookLM 產出逐字稿摘要]
+    B --&gt; C[六項清單複核]
+    C --&gt; D[發送會議紀錄]
+    E[客戶來信] --&gt; F[判斷語氣與決策情境]
+    F --&gt; G[Claude 產出回信草稿]
+    G --&gt; H[複核後寄出]</code></pre><hr id="3b69fbe8-f70c-803b-910f-c9a0cfe0ede3" dir="auto"/><details open="" class="" dir="auto"><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><h2 id="3b69fbe8-f70c-807c-bf69-cb0eba00e540" style="display:inline-block">🙏 課程總結與致謝</h2></summary><div class="indented"><div id="3b99fbe8-f70c-8094-b613-c53c4a2373aa" class="column-list" data-notion-column-list="" dir="auto"><div id="3b99fbe8-f70c-80c7-97a1-ca2e207f4b7e" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="3b69fbe8-f70c-80e2-8a78-f37668d9003c" class="" dir="auto"><strong>回首學習走過的路</strong>：提示詞入門 → 寫作風格設定 → 會議紀錄 → Email → 報告 → 翻譯 → <strong><span style="border-bottom:0.05em solid">個人工作流整合</span></strong>。</p><p id="3b69fbe8-f70c-8094-98b5-d9b011312d3b" class="" dir="auto">感謝主辦單位提供本次培訓機會，也感謝每一位學員投入實作與分享。</p><figure id="3b79fbe8-f70c-80fc-b2bb-f7da436c82ee" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_summary_thanks.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_summary_thanks.png"><img style="width:623.99853515625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/%E4%B8%ADscenario_summary_thanks.png"/></a></figure><p id="3b99fbe8-f70c-807e-887d-fa8061da9eeb" class="" dir="auto">
+</p></div><div id="3b99fbe8-f70c-8043-9b50-e39acc269a87" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="3b69fbe8-f70c-8039-8dc0-ec508473c62c" class="" dir="auto"><strong>講師聯絡方式</strong></p><ul id="3b69fbe8-f70c-805a-8908-d820c9701807" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><a href="https://about.me/ccchan">詹健中</a> 教育長</li></ul><ul id="3b69fbe8-f70c-8072-9c7c-cffcec18afc8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">mrccchan+notion@gmail.com</li></ul><figure id="3b79fbe8-f70c-805e-81a2-c37e7b95a0a4" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/qrcode_ccchan.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/qrcode_ccchan.png"><img style="width:314.00567626953125px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/qrcode_ccchan.png"/></a></figure></div></div></div></details><hr id="3b69fbe8-f70c-80f9-aed6-da984fd5a173" dir="auto"/><details open="" class="" dir="auto"><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><h2 id="3b69fbe8-f70c-8072-ab63-d62599bbd5f2" style="display:inline-block">🖼️ 附錄：<a href="https://manus.im/app/uPXDLjAU8Tbkb6LT7GJepI">AI 製圖用提示詞</a>（Prompt）</h2></summary><div class="indented"><p id="3b69fbe8-f70c-8051-9eec-fa6ccb88230d" class="" dir="auto">以下提示詞可複製貼上至圖像生成工具（如 Midjourney、DALL·E、Nano Banana 等），用於產出簡報與講義所需之插畫；風格統一為「日系插畫風、手繪塗鴉風、潑墨筆觸、粉彩與墨色混合、白色簡約背景、高細節高品質」。</p><p id="3b69fbe8-f70c-80e3-bd0f-f8d81f1d68c3" class="" dir="auto"><strong>封面主視覺</strong></p><pre id="3b69fbe8-f70c-80e9-af3c-d2040608c209" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">A Japanese-style hand-drawn illustration, ink-wash brush strokes with pastel accents, sketchy manga-draft texture, clean white minimal background, high detail, high quality. A person sitting at a desk writing, with floating speech-bubble and document icons around them, warm and professional mood. No text in the image.Aspect ratio: 16:9.</code></pre><figure id="3b69fbe8-f70c-8006-bfbd-c4103a4ede03" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2045.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2045.png"><img style="width:666.015625px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2045.png"/></a></figure><p id="3b69fbe8-f70c-8098-add9-c4377394f799" class="" dir="auto"><strong>角色設定：大壯</strong></p><pre id="3b69fbe8-f70c-804a-bdd7-d58184a58780" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">A Japanese-style hand-drawn character illustration, ink-wash brush strokes with pastel accents, sketchy manga-draft texture, clean white background. A friendly, sturdily-built male business engineer character in business casual attire, warm expression, consistent design for reuse across a slide deck. No text in the image.</code></pre><figure id="3b69fbe8-f70c-8069-9681-e7d8f21f11a3" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2046.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2046.png"><img style="width:572.0028076171875px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2046.png"/></a></figure><p id="3b69fbe8-f70c-8026-b59f-f492609bc83a" class="" dir="auto"><strong>角色設定：小壯</strong></p><pre id="3b69fbe8-f70c-807d-8849-fab187dfb424" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">A Japanese-style hand-drawn character illustration, ink-wash brush strokes with pastel accents, sketchy manga-draft texture, clean white background. A slim, earnest-looking young male business associate character in business casual attire, slightly worried expression, consistent design for reuse across a slide deck. No text in the image.</code></pre><figure id="3b69fbe8-f70c-803f-ab46-caf1a8b65cc6" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2047.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2047.png"><img style="width:572.0028076171875px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2047.png"/></a></figure><p id="3b69fbe8-f70c-8076-8820-d52b6dad9968" class="" dir="auto"><strong>單元圖示風格（icon set，套用於各單元標題頁）</strong></p><pre id="3b69fbe8-f70c-8000-a9d7-dc1bb7bfb888" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">A set of Japanese-style hand-drawn doodle icons, ink-wash brush strokes with a single pastel accent color, clean white background, high detail. Icons needed: a notebook with a pen (writing), a speech bubble pair (communication), a globe with translation marks (translation), a checklist with checkmark (to-do), a puzzle piece (skills). Consistent line weight and style across all icons. No text in the image. Aspect ratio: 21:9.</code></pre><figure id="3b69fbe8-f70c-80d7-8587-d532cc2e2e21" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2048.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2048.png"><img style="width:572.0099487304688px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2048.png"/></a></figure><p id="3b69fbe8-f70c-8010-ac69-c25df9ad6377" class="" dir="auto"><strong>單元分隔頁背景插畫（可套用於各單元標題頁背景）</strong></p><pre id="3b69fbe8-f70c-805f-bf03-e451c817644d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">A Japanese-style hand-drawn background illustration, loose ink-wash brush strokes and pastel splashes in the corners only, large clean white empty space in the center-left for text overlay, high detail, high quality, no text in the image.</code></pre><figure id="3b69fbe8-f70c-804d-be3c-e6dcb08d16e6" class="image" data-notion-image="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2049.png" dir="ltr"><a href="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2049.png"><img style="width:572.0099487304688px" src="%F0%9F%93%98%20AI%E6%96%87%E6%9B%B8%E8%99%95%E7%90%86%E8%88%87%E5%95%86%E5%8B%99%E6%BA%9D%E9%80%9A/image%2049.png"/></a></figure><blockquote id="3b69fbe8-f70c-8070-a019-c538f7705658" class="" dir="auto">📌 使用建議：先以固定的角色與 icon 指令生成基礎素材，再依各單元情境微調背景描述，以維持全系列插畫風格一致。</blockquote></div></details><p id="3b79fbe8-f70c-8044-9b60-defcef79cd7c" class="" dir="auto">
+</p><p id="3b79fbe8-f70c-8072-802a-fceea2616921" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
